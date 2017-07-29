@@ -1,6 +1,6 @@
 {
 	"name": "Swiss",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
@@ -21,6 +21,9 @@
 		"react-test-renderer": "16.0.0-alpha.12"
 	},
 	"jest": {
-		"preset": "react-native"
+		"preset": "react-native",
+		"transformIgnorePatterns": [
+			"node_modules/(?!(jest-)?react-native|react-navigation)"
+		]
 	}
 }
