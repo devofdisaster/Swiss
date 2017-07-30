@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 
 export default class StandingsTab extends React.Component {
     static navigationOptions = {
-        tabBarLabel: 'StandingsTab'
+        drawerLabel: 'StandingsTab'
     }
 
     render() {

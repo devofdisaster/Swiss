@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 
 export default class RegistrationTab extends React.Component {
     static navigationOptions = {
-        tabBarLabel: 'RegistrationTab'
+        drawerLabel: 'RegistrationTab'
     }
 
     render() {
