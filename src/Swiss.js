@@ -1,8 +1,8 @@
 import React from 'react'
 import { createStore } from 'redux'
-import rootReducer from './Reducers/rootReducer'
 import { Provider } from 'react-redux'
-import NavigableApp from './Components/App'
+import rootReducer from './Shared/rootReducer'
+import NavigableApp from './Shared/App'
 
 const store = createStore(rootReducer)
 
