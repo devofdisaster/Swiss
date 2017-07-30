@@ -1,5 +1,5 @@
 import React from 'react';
-import MainScreen from './Nav/MainScreen';
+import MainScreen from './Navigation/MainScreen';
 import { addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 
