@@ -1,6 +1,6 @@
 import { DrawerNavigator, NavigationActions } from 'react-navigation';
 import { BackHandler } from 'react-native'
-import RegistrationTab from './RegistrationTab';
+import RegistrationTab from './AttendeesTab';
 import RoundsTab from './RoundTab';
 import StandingsTab from './StandingsTab';
 import SettingsTab from './SettingsTab'
