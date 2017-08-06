@@ -1,12 +1,12 @@
 import { DrawerNavigator, NavigationActions } from 'react-navigation';
 import { BackHandler } from 'react-native'
-import RegistrationTab from './AttendeesTab';
+import PlayersScreen from '../Players/Components/PlayersScreen';
 import RoundsTab from './RoundTab';
 import StandingsTab from './StandingsTab';
 import SettingsTab from './SettingsTab'
 
 const routes = {
-    attendees:  { screen: RegistrationTab,  name: 'attendees'   },
+    attendees:  { screen: PlayersScreen,    name: 'attendees'   },
     routes:     { screen: RoundsTab,        name: 'routes'      },
     standings:  { screen: StandingsTab,     name: 'standings'   },
     settings:   { screen: SettingsTab,      name: 'settings'    }
