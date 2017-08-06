@@ -10,14 +10,25 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     onIconClicked: () => dispatch(NavigationActions.navigate({ routeName: 'DrawerOpen' })),
+    onActionSelected: () => {},
     onStatPicked: () => {}
 })
+
+const actions = [
+    {
+        title: 'AddNewPlayer',
+        icon: require('material-design-icons/social/drawable-hdpi/ic_person_add_black_24dp.png'),
+        show: 'always',
+        showWithText: false
+    }
+]
 
 function PlayersHeader(props) {
     return <ScreenHeader
         title={props.count ? `Players: ${props.count}` : 'Players'}
-        actions={[{'title': 'blah', 'show': 'ifRoom'}]}
+        actions={actions}
         onIconClicked={props.onIconClicked}
+        onActionSelected={props.onActionSelected}
     >
         <PlayerStatPicker
             onChange={props.onStatPicked}
