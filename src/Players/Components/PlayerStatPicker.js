@@ -6,6 +6,7 @@ export default function PlayerStatPicker(props) {
         <Picker
             selectedValue="points"
             onValueChange={props.onChange}
+            style={{ minWidth: 100 }}
         >
             <Picker.Item label="Points" value="points"/>
             <Picker.Item label="W-D-L" value="results"/>
