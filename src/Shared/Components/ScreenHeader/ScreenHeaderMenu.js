@@ -11,6 +11,8 @@ const viewStyle = {
     marginRight: 5
 }
 
+const background = TouchableNativeFeedback.Ripple('black', true);
+
 export default function ScreenHeaderMenu(props) {
     const style = Object.assign(viewStyle, props.style || {})
 
@@ -27,7 +29,7 @@ function renderItem(item) {
 
     return (
         <TouchableNativeFeedback
-            background={TouchableNativeFeedback.Ripple('black', true)}
+            background={background}
             useForeground={TouchableNativeFeedback.canUseNativeForeground()}
             onPress={item.onPress}
             key={item.name}
