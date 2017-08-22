@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Text } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import ScreenHeader from '../../Shared/Components/ScreenHeader'
 import PlayerStatPicker from './PlayerStatPicker'

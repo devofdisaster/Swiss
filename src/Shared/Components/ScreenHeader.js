@@ -28,7 +28,7 @@ const childViewStyle = {
 
 export default function ScreenHeader(props) {
     return (
-        <View style={ Object.assign({}, headerStyle, props.headerStyle || {}) }>
+        <View style={ Object.assign(headerStyle, props.headerStyle || {}) }>
             <ScreenHeaderNavIcon
                 image={require('material-design-icons/navigation/drawable-hdpi/ic_menu_black_24dp.png')}
                 { ...props.navIcon }
