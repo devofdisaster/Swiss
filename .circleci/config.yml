@@ -10,12 +10,12 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v0.2-dependencies-{{ checksum "package-lock.json" }}
+            - v0.2-dependencies-{{ checksum "package.json" }}
       - run: npm install
       - save_cache:
           paths:
             - node_modules
-          key: v0.2-dependencies-{{ checksum "package-lock.json" }}
+          key: v0.2-dependencies-{{ checksum "package.json" }}
       - run: npm test
 
 
