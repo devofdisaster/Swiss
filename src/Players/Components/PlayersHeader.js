@@ -4,23 +4,29 @@ import { NavigationActions } from 'react-navigation'
 import ScreenHeader from '../../Shared/Components/ScreenHeader'
 import PlayerStatPicker from './PlayerStatPicker'
 
+const buildMenu = (dispatch) => (
+    {
+        items: [
+            {
+                name: 'AddNewPlayer',
+                icon: require('material-design-icons/social/drawable-hdpi/ic_person_add_black_24dp.png'),
+                onPress: () => dispatch(NavigationActions.navigate({
+                    routeName: 'EditPlayer',
+                    params: { title: 'Add player' }
+                }))
+            }
+        ]
+    }
+)
+
 const mapStateToProps = (state) => ({
     count: (state.players || []).length
 })
 
-const menu = {
-    items: [
-        {
-            name: 'AddNewPlayer',
-            icon: require('material-design-icons/social/drawable-hdpi/ic_person_add_black_24dp.png'),
-        }
-    ]
-}
-
 const mapDispatchToProps = (dispatch) => ({
     onNavIconPressed: () => dispatch(NavigationActions.navigate({ routeName: 'DrawerOpen' })),
     onStatPicked: () => {},
-    menu: { items: menu.items.map((item) => Object.assign({}, item, {})) }
+    menu: buildMenu(dispatch)
 })
 
 function PlayersHeader(props) {

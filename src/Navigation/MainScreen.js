@@ -1,17 +1,17 @@
 import { DrawerNavigator, NavigationActions } from 'react-navigation';
 import { BackHandler } from 'react-native'
-import PlayersScreen from '../Players/Components/PlayersScreen';
 import RoundsTab from './RoundTab';
 import StandingsTab from './StandingsTab';
 import SettingsTab from './SettingsTab'
+import PlayersTab from '../Players/PlayersTab'
 
 const routes = {
-    attendees:  { screen: PlayersScreen,    name: 'attendees'   },
-    routes:     { screen: RoundsTab,        name: 'routes'      },
-    standings:  { screen: StandingsTab,     name: 'standings'   },
-    settings:   { screen: SettingsTab,      name: 'settings'    }
+    players:    { screen: PlayersTab,   name: 'players'   },
+    rounds:     { screen: RoundsTab,    name: 'rounds'    },
+    standings:  { screen: StandingsTab, name: 'standings' },
+    settings:   { screen: SettingsTab,  name: 'settings'  }
 }
-const config = { initialRouteName: 'attendees' }
+const config = { initialRouteName: 'players' }
 
 export default class MainScreen extends DrawerNavigator(routes, config) {
     shouldCloseApp(navState) {

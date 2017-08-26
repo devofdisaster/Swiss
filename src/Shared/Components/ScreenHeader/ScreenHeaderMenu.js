@@ -18,7 +18,7 @@ export default function ScreenHeaderMenu(props) {
 
     return (
         <View style={style}>
-            { props.items.map(renderItem) }
+            { props.items && props.items.map(renderItem) }
         </View>
     )
 }
