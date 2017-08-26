@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, TouchableNativeFeedback } from 'react-native'
+import {View, Image, Text, TouchableNativeFeedback} from 'react-native'
 
 const viewStyle = {
     height: 56,
@@ -9,6 +9,18 @@ const viewStyle = {
     alignItems: 'center',
     marginLeft: 5,
     marginRight: 5
+}
+
+const itemViewStyle = {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+}
+
+const itemTitleStyle = {
+    color: 'black',
+    fontSize: 16
 }
 
 const background = TouchableNativeFeedback.Ripple('black', true);
@@ -25,7 +37,6 @@ export default function ScreenHeaderMenu(props) {
 
 function renderItem(item) {
     const itemStyle = Object.assign({ width: 36, height: 36, marginLeft: 5, marginRight: 5 }, item.style || {})
-    const itemImage = item.image || require('material-design-icons/social/drawable-hdpi/ic_person_add_black_24dp.png')
 
     return (
         <TouchableNativeFeedback
@@ -34,9 +45,10 @@ function renderItem(item) {
             onPress={item.onPress}
             key={item.name}
         >
-            <View>
+            <View style={itemViewStyle}>
+                { item.title && <Text style={itemTitleStyle}>{item.title}</Text> }
                 <Image
-                    source={itemImage}
+                    source={item.image}
                     style={itemStyle}
                 />
             </View>

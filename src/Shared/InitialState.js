@@ -10,10 +10,6 @@ const initialAction = NavigationActions.reset({
 
 export default initialState = {
     nav: MainScreen.router.getStateForAction(initialAction),
-    players: [],
-    newPlayer: {
-        firstname: null,
-        nickname: null,
-        lastname: null
-    }
+    players: {},
+    playersList: []
 }
