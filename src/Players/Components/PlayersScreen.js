@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
 })
 
 export default class PlayersScreen extends React.Component {
-    static navigationOptions = { drawerLabel: 'Players' }
+    static navigationOptions = { title: 'Players' }
 
     render() {
         return (
