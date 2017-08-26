@@ -1,45 +1,58 @@
 import React from 'react'
-import { View, TextInput } from 'react-native'
+import { View, TextInput, Alert } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
-import ScreenHeader from '../../Shared/Components/ScreenHeader'
+import EditPlayerHeader from './EditPlayerHeader'
+import CreateNewPlayer from '../ActionsCreators/CreateNewPlayer'
+import UpdateExistingPlayer from '../ActionsCreators/UpdateExistingPlayer'
 
 class EditPlayerScreen extends React.Component {
     autofocusNickname() {
-        return !this.props.firstname && !this.props.lastname && !this.props.nickname
+        return !this.props.navigation.state.params.player
     }
 
     render() {
+        const navParams = this.props.navigation.state.params
+
+        this.player = {...navParams.player}
+
         return (
             <View>
-                <ScreenHeader
-                    navIcon={{ image: require('material-design-icons/social/drawable-hdpi/ic_person_black_24dp.png') }}
-                    title={this.props.navigation.state.params.title}
+                <EditPlayerHeader
+                    onBackClick={this.props.onBackClick}
+                    onSaveClick={() => this.props.onSaveClick(this.player)}
+                    title={navParams.title}
                 />
                 <TextInput
+                    onChangeText={(value) => this.player.firstname = value}
                     placeholder="First name"
-                    value={this.props.firstname}
+                    value={this.player.firstname}
                 />
                 <TextInput
                     autoFocus={this.autofocusNickname()}
+                    onChangeText={(value) => this.player.nickname = value}
                     placeholder="Nickname"
-                    value={this.props.nickname}
+                    value={this.player.nickname}
                 />
                 <TextInput
+                    onChangeText={(value) => this.player.lastname = value}
                     placeholder="Last name"
-                    value={this.props.lastname}
+                    value={this.player.lastname}
                 />
             </View>
         )
     }
 }
 
-const mapStateToProps = (state) => ({
-    firstname: state.newPlayer.name,
-    nickname: state.newPlayer.nickname,
-    lastname: state.newPlayer.lastname
-})
 const mapDispatchToProps = (dispatch) => ({
-    onSaveClicked: () => {}
+    onBackClick: () => dispatch(NavigationActions.back()),
+    onSaveClick: (player) => {
+        if (!player.firstname && !player.nickname && !player.lastname) {
+            return Alert.alert('Heresy!', 'At least one name field is required!')
+        }
+
+        dispatch(player.id ? UpdateExistingPlayer(player) : CreateNewPlayer(player))
+    }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditPlayerScreen);
+export default connect(null, mapDispatchToProps)(EditPlayerScreen);

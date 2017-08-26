@@ -9,7 +9,7 @@ const buildMenu = (dispatch) => (
         items: [
             {
                 name: 'AddNewPlayer',
-                icon: require('material-design-icons/social/drawable-hdpi/ic_person_add_black_24dp.png'),
+                image: require('material-design-icons/social/drawable-hdpi/ic_person_add_black_24dp.png'),
                 onPress: () => dispatch(NavigationActions.navigate({
                     routeName: 'EditPlayer',
                     params: { title: 'Add player' }
@@ -20,7 +20,7 @@ const buildMenu = (dispatch) => (
 )
 
 const mapStateToProps = (state) => ({
-    count: (state.players || []).length
+    count: Object.getOwnPropertyNames(state.players).length
 })
 
 const mapDispatchToProps = (dispatch) => ({
