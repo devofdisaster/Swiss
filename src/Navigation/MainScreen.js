@@ -15,7 +15,6 @@ const config = { initialRouteName: 'players' }
 
 export default class MainScreen extends DrawerNavigator(routes, config) {
     shouldCloseApp(navState) {
-        console.log(navState)
         return navState.index === 0 && navState.routes[0].index === 0
     }
 
