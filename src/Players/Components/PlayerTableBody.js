@@ -35,17 +35,17 @@ export default class PlayerTableBody extends React.Component {
     constructor(props) {
         super(props)
 
-        this.dataSource = new ListView.DataSource({ rowHasChanged })
+        this.dataSource = (new ListView.DataSource({ rowHasChanged })).cloneWithRows(props.players)
     }
 
     render() {
         return (
             <ListView
                 style={this.props.style}
-                dataSource={this.dataSource.cloneWithRows(this.props.players)}
-                initialListSize={24}
+                dataSource={this.dataSource}
+                initialListSize={16}
                 renderRow={renderPlayer}
-                scrollRenderAheadDistance={200}
+                scrollRenderAheadDistance={100}
             />
         )
     }
