@@ -3,7 +3,7 @@ import { Text, View } from 'react-native'
 import Statistic from '../../Shared/Domain/Statistic'
 
 const viewStyle = { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }
-const cellStyle = { borderWidth: 1, borderColor: 'grey' }
+const cellStyle = { borderWidth: 1, borderColor: 'grey', fontSize: 18, paddingTop: 5, paddingBottom: 5 }
 const numberStyle = { width: '10%', textAlign: 'center', overflow: 'hidden', fontWeight: 'bold' }
 const nameStyle = { width: '65%', textAlign: 'center', overflow: 'hidden', fontWeight: 'bold'}
 const statStyle = { width: '25%', textAlign: 'center', overflow: 'hidden', fontWeight: 'bold' }
