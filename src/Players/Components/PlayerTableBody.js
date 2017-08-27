@@ -2,9 +2,18 @@ import React from 'react'
 import {ListView, Text, View} from 'react-native'
 
 const viewStyle = { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }
-const cellStyle = { borderWidth: 1, borderColor: 'grey', height: '100%', textAlign: 'center', overflow: 'hidden' }
+const cellStyle = {
+    borderWidth: 1,
+    borderColor: 'grey',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    height: '100%',
+    fontSize: 18,
+    paddingTop: 5,
+    paddingBottom: 5
+}
 const numberStyle = { width: '10%' }
-const nameStyle = { width: '65%' }
+const nameStyle = { width: '65%', fontSize: 14 }
 const statStyle = { width: '25%' }
 
 function renderPlayer(player, sectionId, rowId) {
