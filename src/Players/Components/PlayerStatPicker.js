@@ -10,7 +10,7 @@ import Comparison from '../../Shared/Domain/Statistic/Comparison'
 export default function PlayerStatPicker(props) {
     return (
         <Picker
-            selectedValue="points"
+            selectedValue={props.selected}
             onValueChange={props.onChange}
             style={{ minWidth: 100 }}
         >

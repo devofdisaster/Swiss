@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import ScreenHeader from '../../Shared/Components/ScreenHeader'
 import PlayerStatPicker from './PlayerStatPicker'
+import ChangeDisplayedStat from '../ActionsCreators/ChangeDisplayedStat'
 
 const buildMenu = (dispatch) => (
     {
@@ -20,12 +21,13 @@ const buildMenu = (dispatch) => (
 )
 
 const mapStateToProps = (state) => ({
-    count: Object.getOwnPropertyNames(state.players).length
+    count: Object.getOwnPropertyNames(state.players).length,
+    selected: state.playersList.visibleStat
 })
 
 const mapDispatchToProps = (dispatch) => ({
     onNavIconPressed: () => dispatch(NavigationActions.navigate({ routeName: 'DrawerOpen' })),
-    onStatPicked: () => {},
+    onStatPicked: (stat) => { dispatch(ChangeDisplayedStat(stat)) },
     menu: buildMenu(dispatch)
 })
 
@@ -37,6 +39,7 @@ function PlayersHeader(props) {
     >
         <PlayerStatPicker
             onChange={props.onStatPicked}
+            selected={props.selected}
         />
     </ScreenHeader>
 }
