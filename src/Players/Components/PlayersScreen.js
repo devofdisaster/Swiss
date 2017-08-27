@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import PlayersHeader from './PlayersHeader'
+import PlayerTable from './PlayerTable'
 
 const styles = StyleSheet.create({
-    temptext: { textAlign: 'center', borderWidth: 1, borderColor: 'lightblue' },
-    view: { display: 'flex', justifyContent: 'flex-start', alignItems: 'stretch' }
+    view: { display: 'flex', justifyContent: 'flex-start', alignItems: 'stretch', flex: -1 }
 })
 
 export default class PlayersScreen extends React.Component {
@@ -14,8 +14,7 @@ export default class PlayersScreen extends React.Component {
         return (
             <View style={styles.view}>
                 <PlayersHeader />
-                <Text style={styles.temptext}>Table header</Text>
-                <Text style={styles.temptext}>Table content</Text>
+                <PlayerTable />
             </View>
         )
     }
