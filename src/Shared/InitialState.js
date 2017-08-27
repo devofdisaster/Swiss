@@ -11,5 +11,8 @@ const initialAction = NavigationActions.reset({
 export default initialState = {
     nav: MainScreen.router.getStateForAction(initialAction),
     players: {},
-    playersList: []
+    playersList: {
+        players: [],
+        visibleStat: 'points'
+    }
 }
