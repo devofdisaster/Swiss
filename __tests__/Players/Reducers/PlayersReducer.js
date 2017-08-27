@@ -12,9 +12,17 @@ describe('PlayersReducer', () => {
 
     it('should add a new player on Players/SaveNew', () => {
         const newPlayer = { id: 'player-five-hundred', nickname: 'xXxLegolas9273xXx', score: 9001 }
+        const addedInitialStats = {
+            comparison: { plus: 0, minus: 0 },
+            games: 0,
+            points: 0,
+            results: { wins: 0, draws: 0, losses: 0 },
+            sos: 0,
+            ssos: 0
+        }
         const expectedState = {
             ...state,
-            'player-five-hundred': newPlayer
+            'player-five-hundred': {...newPlayer, ...addedInitialStats}
         }
 
         expect(PlayersReducer(state, SaveNewPlayer(newPlayer))).toEqual(expectedState)
