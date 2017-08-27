@@ -7,7 +7,6 @@ const numberStyle = { width: '10%' }
 const nameStyle = { width: '65%' }
 const statStyle = { width: '25%' }
 
-
 function renderPlayer(player, sectionId, rowId) {
     return <View style={viewStyle}>
         <Text style={{...cellStyle, ...numberStyle}}>{rowId*1 + 1}</Text>
@@ -35,9 +34,9 @@ export default class PlayerTableBody extends React.Component {
             <ListView
                 style={this.props.style}
                 dataSource={this.dataSource.cloneWithRows(this.props.players)}
-                initialListSize={6}
+                initialListSize={24}
                 renderRow={renderPlayer}
-                scrollRenderAheadDistance={50}
+                scrollRenderAheadDistance={200}
             />
         )
     }

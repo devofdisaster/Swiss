@@ -6,7 +6,10 @@ import PlayerTableBody from './PlayerTableBody'
 import Player from '../../Shared/Domain/Player'
 
 const tableStyle = {
-    padding: 10
+    padding: 10,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    flex: -1
 }
 const headerStyle = {
     borderWidth: 1,
@@ -16,7 +19,8 @@ const headerStyle = {
 const bodyStyle = {
     borderWidth: 1,
     borderColor: 'grey',
-    borderTopWidth: 0
+    borderTopWidth: 0,
+    flexShrink: 1
 }
 
 function PlayerTable(props) {
