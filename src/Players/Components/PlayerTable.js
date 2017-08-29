@@ -4,6 +4,9 @@ import { connect } from 'react-redux'
 import PlayerTableHeader from './PlayerTableHeader'
 import PlayerTableBody from './PlayerTableBody'
 import Player from '../../Shared/Domain/Player'
+import SortByPlayerName from '../ActionsCreators/SortByPlayerName'
+import SortByPlayerOrder from '../ActionsCreators/SortByPlayerOrder'
+import SortByStatistic from '../ActionsCreators/SortByStatistic'
 
 const tableStyle = {
     padding: 10,
@@ -29,6 +32,9 @@ function PlayerTable(props) {
             <PlayerTableHeader
                 style={headerStyle}
                 visibleStat={props.visibleStat}
+                onNameClick={props.onNameClick}
+                onNumberClick={props.onNumberClick}
+                onStatClick={props.onStatClick}
             />
             <PlayerTableBody
                 players={props.players}
@@ -42,23 +48,24 @@ const mapStateToProps = (state) => ({
     players: mapPlayersToList(state),
     visibleStat: state.playersList.visibleStat
 })
-const mapDispatchToProps = (dispatch) => ({
 
+const mapDispatchToProps = (dispatch) => ({
+    onNameClick: () => dispatch(SortByPlayerName()),
+    onNumberClick: () => dispatch(SortByPlayerOrder()),
+    onStatClick: () => dispatch(SortByStatistic())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerTable)
 
 function mapPlayersToList(state) {
-    const players = state.players
-    const order = state.playersList.players
-    const statToDisplay = state.playersList.visibleStat
-
-    return order.map((id) => {
-        const player = new Player(players[id])
+    return state.playersList.players.map((id) => {
+        const player = new Player(state.players[id])
 
         return {
+            id: player.id,
             name: player.renderName(),
-            stat: player.renderStatistic(statToDisplay)
+            order: player.getOriginalOrder() + 1,
+            stat: player.renderStatistic(state.playersList.visibleStat)
         }
     })
 }

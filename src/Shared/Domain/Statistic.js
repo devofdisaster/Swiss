@@ -18,17 +18,25 @@ export default class Statistic {
         }
     }
 
-    renderName() {
-        return Statistic.renderName(this.key)
+    constructor(key, value) {
+        this._key = key
+        this._value = value
     }
 
-    constructor(key, value) {
-        this.key = key
-        this.value = value
+    getValue() {
+        return this._value
+    }
+
+    isLowerThan(otherStat) {
+        return this._value < otherStat.getValue()
+    }
+
+    renderName() {
+        return Statistic.renderName(this._key)
     }
 
     toString() {
-        return `${this.value || 0}`
+        return `${this._value || 0}`
     }
 }
 
