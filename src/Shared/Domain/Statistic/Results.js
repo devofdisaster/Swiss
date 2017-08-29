@@ -9,7 +9,23 @@ export default class Results extends Statistic {
         super('results', value)
     }
 
+    getLosses() {
+        return this._value.losses
+    }
+
+    getWins() {
+        return this._value.wins
+    }
+
+    isLowerThan(otherResults) {
+        if (this._value.wins === otherResults.getWins()) {
+            return this._value.losses > otherResults.getLosses()
+        }
+
+        return this._value.wins < otherResults.getWins()
+    }
+
     toString () {
-        return [this.value.wins || 0, this.value.draws || 0, this.value.losses || 0].join('-')
+        return [this._value.wins || 0, this._value.draws || 0, this._value.losses || 0].join('-')
     }
 }

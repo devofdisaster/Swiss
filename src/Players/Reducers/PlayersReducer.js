@@ -15,7 +15,7 @@ export default function (state = initialState.players, action) {
         case Types.PLAYERS_SAVE_NEW:
             return {
                 ...state,
-                [action.player.id]: {...action.player, ...emptyStats}
+                [action.player.id]: {...action.player, ...emptyStats, order: Object.keys(state).length}
             }
         case Types.PLAYERS_SAVE_EXISTING:
             return {

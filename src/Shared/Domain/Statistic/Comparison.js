@@ -5,11 +5,19 @@ export default class Comparison extends Statistic {
         return super.renderName('comparison')
     }
 
-    constructor (value) {
+    constructor(value) {
         super('comparison', value)
     }
 
+    isLowerThan(otherValue) {
+        if (this._value.plus < otherValue.plus) {
+            return true
+        }
+
+        return this._value.minus > otherValue.minus
+    }
+
     toString () {
-        return `${this.value.plus || 0}/${this.value.minus || 0}`
+        return `${this._value.plus || 0}/${this._value.minus || 0}`
     }
 }

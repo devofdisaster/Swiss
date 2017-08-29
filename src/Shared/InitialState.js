@@ -12,7 +12,9 @@ export default initialState = {
     nav: MainScreen.router.getStateForAction(initialAction),
     players: {},
     playersList: {
+        sortBy: 'order',
         players: [],
+        order: 'asc',
         visibleStat: 'points'
     }
 }

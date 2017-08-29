@@ -16,9 +16,9 @@ const numberStyle = { width: '10%' }
 const nameStyle = { width: '65%', fontSize: 14 }
 const statStyle = { width: '25%' }
 
-function renderPlayer(player, sectionId, rowId) {
+function renderPlayer(player, sectionId) {
     return <View style={viewStyle}>
-        <Text style={{...cellStyle, ...numberStyle}}>{rowId*1 + 1}</Text>
+        <Text style={{...cellStyle, ...numberStyle}}>{player.order}</Text>
         <Text style={{...cellStyle, ...nameStyle}}>{player.name}</Text>
         <Text style={{...cellStyle, ...statStyle}}>{player.stat}</Text>
     </View>
@@ -35,14 +35,14 @@ export default class PlayerTableBody extends React.Component {
     constructor(props) {
         super(props)
 
-        this.dataSource = (new ListView.DataSource({ rowHasChanged })).cloneWithRows(props.players)
+        this.dataSource = new ListView.DataSource({ rowHasChanged })
     }
 
     render() {
         return (
             <ListView
                 style={this.props.style}
-                dataSource={this.dataSource}
+                dataSource={this.dataSource.cloneWithRows(this.props.players)}
                 initialListSize={16}
                 renderRow={renderPlayer}
                 scrollRenderAheadDistance={100}
