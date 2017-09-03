@@ -56,7 +56,7 @@ const mapDispatchToProps = (dispatch) => ({
         if (!player.firstname && !player.nickname && !player.lastname) {
             return Alert.alert('Heresy!', 'At least one name field is required!')
         }
-console.log(player)
+
         dispatch(player.id ? UpdateExistingPlayer(player) : CreateNewPlayer(player))
     }
 })

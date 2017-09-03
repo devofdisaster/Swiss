@@ -20,6 +20,7 @@ export default class PlayerTableBody extends React.Component {
     renderRow(player) {
         return <PlayerTableRow
             player={player}
+            onPlayerClick={this.props.onPlayerClick}
             onPlayerLongClick={this.props.onPlayerLongClick}
         />
     }
