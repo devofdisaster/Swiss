@@ -25,6 +25,7 @@ export default function PlayerTableRow(props) {
         <TouchableNativeFeedback
             background={cellTouchBackground}
             useForeground={canUseForeground}
+            onPress={() => props.onPlayerClick(props.player)}
             onLongPress={() => props.onPlayerLongClick(props.player)}
         >
             <View style={{...viewStyle, ...backgroundStyle}}>
