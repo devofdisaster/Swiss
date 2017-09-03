@@ -1,9 +1,10 @@
 import { DrawerNavigator, NavigationActions } from 'react-navigation';
 import { BackHandler } from 'react-native'
-import RoundsTab from './RoundTab';
+
 import StandingsTab from './StandingsTab';
 import SettingsTab from './SettingsTab'
 import PlayersTab from '../Players/PlayersTab'
+import RoundsTab from '../Rounds/RoundsTab'
 
 const routes = {
     players:    { screen: PlayersTab,   name: 'players'   },
