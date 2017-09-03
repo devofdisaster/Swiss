@@ -8,39 +8,45 @@ import UpdateExistingPlayer from '../ActionsCreators/UpdateExistingPlayer'
 
 class EditPlayerScreen extends React.Component {
     autofocusNickname() {
-        return !this.props.navigation.state.params.player
+        return !this.props.navigation.state.params.id
     }
 
     render() {
-        const navParams = this.props.navigation.state.params
-
-        this.player = {...navParams.player}
+        this.player = Object.assign({}, this.props.player)
 
         return (
             <View>
                 <EditPlayerHeader
                     onBackClick={this.props.onBackClick}
                     onSaveClick={() => this.props.onSaveClick(this.player)}
-                    title={navParams.title}
+                    title={this.props.navigation.state.params.title}
                 />
                 <TextInput
                     onChangeText={(value) => this.player.firstname = value}
                     placeholder="First name"
-                    value={this.player.firstname}
+                    defaultValue={this.player.firstname}
                 />
                 <TextInput
                     autoFocus={this.autofocusNickname()}
                     onChangeText={(value) => this.player.nickname = value}
                     placeholder="Nickname"
-                    value={this.player.nickname}
+                    defaultValue={this.player.nickname}
                 />
                 <TextInput
                     onChangeText={(value) => this.player.lastname = value}
                     placeholder="Last name"
-                    value={this.player.lastname}
+                    defaultValue={this.player.lastname}
                 />
             </View>
         )
+    }
+}
+
+const mapStateToProps = (state, ownProps) => {
+    const id = ownProps.navigation.state.params.id
+
+    return {
+        player: id ? state.players[id] : {}
     }
 }
 
@@ -50,9 +56,9 @@ const mapDispatchToProps = (dispatch) => ({
         if (!player.firstname && !player.nickname && !player.lastname) {
             return Alert.alert('Heresy!', 'At least one name field is required!')
         }
-
+console.log(player)
         dispatch(player.id ? UpdateExistingPlayer(player) : CreateNewPlayer(player))
     }
 })
 
-export default connect(null, mapDispatchToProps)(EditPlayerScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(EditPlayerScreen);

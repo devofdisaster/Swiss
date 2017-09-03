@@ -4,6 +4,8 @@ import { NavigationActions } from 'react-navigation'
 import ScreenHeader from '../../Shared/Components/ScreenHeader'
 import PlayerStatPicker from './PlayerStatPicker'
 import ChangeDisplayedStat from '../ActionsCreators/ChangeDisplayedStat'
+import EditNewPlayer from '../ActionsCreators/EditNewPlayer'
+import OpenDrawer from '../../Shared/ActionCreators/OpenDrawer'
 
 const buildMenu = (dispatch) => (
     {
@@ -11,10 +13,7 @@ const buildMenu = (dispatch) => (
             {
                 name: 'AddNewPlayer',
                 image: require('material-design-icons/social/drawable-hdpi/ic_person_add_black_24dp.png'),
-                onPress: () => dispatch(NavigationActions.navigate({
-                    routeName: 'EditPlayer',
-                    params: { title: 'Add player' }
-                }))
+                onPress: () => dispatch(EditNewPlayer())
             }
         ]
     }
@@ -26,7 +25,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    onNavIconPressed: () => dispatch(NavigationActions.navigate({ routeName: 'DrawerOpen' })),
+    onNavIconPressed: () => dispatch(OpenDrawer()),
     onStatPicked: (stat) => { dispatch(ChangeDisplayedStat(stat)) },
     menu: buildMenu(dispatch)
 })

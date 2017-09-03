@@ -8,6 +8,7 @@ import SSoS from './Statistic/SSoS'
 export default class Player {
     constructor(data) {
         this._id = data.id
+        this._enabled = data.enabled
         this._firstname = (data.firstname || '').trim()
         this._nickname = (data.nickname || '').trim()
         this._lastname = (data.lastname || '').trim()
@@ -20,6 +21,34 @@ export default class Player {
             ssos: new SSoS(data.ssos)
         }
         this._originalOrder = data.order
+    }
+
+    disable() {
+        this._enabled = false
+    }
+
+    enable() {
+        this._enabled = true
+    }
+
+    getId() {
+        return this._id
+    }
+
+    getOriginalOrder() {
+        return this._originalOrder
+    }
+
+    getStatistic(name) {
+        return this._stats[name]
+    }
+
+    hasLowerStat(stat, otherPlayer) {
+        return this._stats[stat].isLowerThan(otherPlayer.getStatistic(stat))
+    }
+
+    isEnabled() {
+        return !!this._enabled
     }
 
     renderName() {
@@ -42,17 +71,5 @@ export default class Player {
 
     renderStatistic(name) {
         return this._stats[name].toString()
-    }
-
-    getOriginalOrder() {
-        return this._originalOrder
-    }
-
-    getStatistic(name) {
-        return this._stats[name]
-    }
-
-    hasLowerStat(stat, otherPlayer) {
-        return this._stats[stat].isLowerThan(otherPlayer.getStatistic(stat))
     }
 }
