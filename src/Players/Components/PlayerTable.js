@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import PlayerTableHeader from './PlayerTableHeader'
 import PlayerTableBody from './PlayerTableBody'
@@ -7,6 +7,9 @@ import Player from '../../Shared/Domain/Player'
 import SortByPlayerName from '../ActionsCreators/SortByPlayerName'
 import SortByPlayerOrder from '../ActionsCreators/SortByPlayerOrder'
 import SortByStatistic from '../ActionsCreators/SortByStatistic'
+import DisablePlayer from '../ActionsCreators/DisablePlayer'
+import EnablePlayer from '../ActionsCreators/EnablePlayer'
+import EditExistingPlayer from '../ActionsCreators/EditExistingPlayer'
 
 const tableStyle = {
     padding: 10,
@@ -39,6 +42,7 @@ function PlayerTable(props) {
             <PlayerTableBody
                 players={props.players}
                 style={bodyStyle}
+                onPlayerLongClick={props.onPlayerLongClick}
             />
         </View>
     )
@@ -52,7 +56,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     onNameClick: () => dispatch(SortByPlayerName()),
     onNumberClick: () => dispatch(SortByPlayerOrder()),
-    onStatClick: () => dispatch(SortByStatistic())
+    onStatClick: () => dispatch(SortByStatistic()),
+    onPlayerLongClick: (player) => showPlayerOptions(dispatch, player)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerTable)
@@ -62,10 +67,25 @@ function mapPlayersToList(state) {
         const player = new Player(state.players[id])
 
         return {
-            id: player.id,
+            id: player.getId(),
+            enabled: player.isEnabled(),
             name: player.renderName(),
             order: player.getOriginalOrder() + 1,
             stat: player.renderStatistic(state.playersList.visibleStat)
         }
     })
+}
+
+function showPlayerOptions(dispatch, player) {
+    const editButton    = { text: 'Edit', onPress: () => dispatch(EditExistingPlayer(player.id)) }
+    const detailsButton = { text: 'Details', onPress: () => {} }
+    const suspendButton = player.enabled ?
+        { text: 'Disable', onPress: () => dispatch(DisablePlayer(player.id)) } :
+        { text: 'Enable',  onPress: () => dispatch(EnablePlayer(player.id)) }
+
+    Alert.alert(
+        '',
+        player.name,
+        [editButton, suspendButton, detailsButton]
+    );
 }
