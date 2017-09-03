@@ -22,4 +22,40 @@ describe('Player', () => {
             expect(player.renderName()).toEqual(`Jenkins`)
         })
     })
+
+    describe('enable()', () => {
+        it('should enable disabled player', () => {
+            const player = new Player({ enabled: false })
+
+            player.enable()
+
+            expect(player.isEnabled()).toEqual(true)
+        })
+
+        it('should not change state of enabled player', () => {
+            const player = new Player({ enabled: true })
+
+            player.enable()
+
+            expect(player.isEnabled()).toEqual(true)
+        })
+    })
+
+    describe('disable()', () => {
+        it('should disable enabled player', () => {
+            const player = new Player({ enabled: true })
+
+            player.disable()
+
+            expect(player.isEnabled()).toEqual(false)
+        })
+
+        it('should not change state of disabled player', () => {
+            const player = new Player({ enabled: false })
+
+            player.disable()
+
+            expect(player.isEnabled()).toEqual(false)
+        })
+    })
 })

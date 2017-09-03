@@ -14,4 +14,36 @@ describe('Comparison', () => {
             expect(comparison.toString()).toEqual(`10/5`)
         })
     })
+
+    describe('isLowerThan()', () => {
+        it('should be true if count of positive points is lower', () => {
+            const compared = new Comparison({ plus: 15, minus: 0 })
+
+            expect(comparison.isLowerThan(compared)).toEqual(true)
+        })
+
+        it('should be false if count of positive points is higher', () => {
+            const compared = new Comparison({ plus: 5, minus: 0 })
+
+            expect(comparison.isLowerThan(compared)).toEqual(false)
+        })
+
+        it('should be true if count of positive points is equal and negative is higher', () => {
+            const compared = new Comparison({ plus: 10, minus: 0 })
+
+            expect(comparison.isLowerThan(compared)).toEqual(true)
+        })
+
+        it('should be false if count of positive points is equal and negative is equal', () => {
+            const compared = new Comparison({ plus: 10, minus: 5 })
+
+            expect(comparison.isLowerThan(compared)).toEqual(false)
+        })
+
+        it('should be false if count of positive points is equal and negative is lower', () => {
+            const compared = new Comparison({ plus: 10, minus: 10 })
+
+            expect(comparison.isLowerThan(compared)).toEqual(false)
+        })
+    })
 })

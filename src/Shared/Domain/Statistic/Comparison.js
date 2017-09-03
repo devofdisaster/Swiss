@@ -9,12 +9,20 @@ export default class Comparison extends Statistic {
         super('comparison', value)
     }
 
+    getNegative() {
+        return this._value.minus
+    }
+
+    getPositive() {
+        return this._value.plus
+    }
+
     isLowerThan(otherValue) {
-        if (this._value.plus < otherValue.plus) {
-            return true
+        if (this.getPositive() === otherValue.getPositive()) {
+            return this.getNegative() > otherValue.getNegative()
         }
 
-        return this._value.minus > otherValue.minus
+        return this.getPositive() < otherValue.getPositive()
     }
 
     toString () {
