@@ -5,9 +5,9 @@ import EditPlayerScreen from './Components/EditPlayerScreen'
 import PlayerDetailsScreen from './Components/PlayerDetailsScreen'
 
 const routes = {
-    Players: { screen: PlayersScreen },
-    EditPlayer: { screen: EditPlayerScreen },
-    PlayerDetails: { screen: PlayerDetailsScreen }
+    Players:        { screen: PlayersScreen },
+    EditPlayer:     { screen: EditPlayerScreen },
+    PlayerDetails:  { screen: PlayerDetailsScreen }
 }
 
 const config = {
