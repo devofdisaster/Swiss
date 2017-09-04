@@ -1,7 +1,8 @@
 import React from 'react'
 import { View, TouchableNativeFeedback, Image } from 'react-native'
 
-const background = TouchableNativeFeedback.Ripple('black', true)
+const background = TouchableNativeFeedback.SelectableBackgroundBorderless()
+const canUseForeground = TouchableNativeFeedback.canUseNativeForeground()
 
 export default function ScreenHeaderNavIcon(props) {
     const style = Object.assign({ width: 36, height: 36, marginLeft: 5, marginRight: 5 }, props.style || {})
@@ -9,7 +10,7 @@ export default function ScreenHeaderNavIcon(props) {
     return (
         <TouchableNativeFeedback
             background={background}
-            useForeground={TouchableNativeFeedback.canUseNativeForeground()}
+            useForeground={canUseForeground}
             onPress={props.onPress}
         >
             <View>

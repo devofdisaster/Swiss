@@ -23,7 +23,8 @@ const itemTitleStyle = {
     fontSize: 16
 }
 
-const background = TouchableNativeFeedback.Ripple('black', true);
+const background = TouchableNativeFeedback.SelectableBackgroundBorderless();
+const canUseForeground = TouchableNativeFeedback.canUseNativeForeground()
 
 export default function ScreenHeaderMenu(props) {
     const style = Object.assign(viewStyle, props.style || {})
@@ -41,7 +42,7 @@ function renderItem(item) {
     return (
         <TouchableNativeFeedback
             background={background}
-            useForeground={TouchableNativeFeedback.canUseNativeForeground()}
+            useForeground={canUseForeground}
             onPress={item.onPress}
             onLongPress={item.onLongPress || (() => {})}
             key={item.name}
