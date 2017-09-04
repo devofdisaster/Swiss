@@ -8,9 +8,10 @@ const initialAction = NavigationActions.reset({
     ]
 })
 
-export default initialState = {
+const initialState = {
     nav: MainScreen.router.getStateForAction(initialAction),
     players: {},
+    rounds: [],
     playersList: {
         sortBy: 'order',
         players: [],
@@ -18,3 +19,5 @@ export default initialState = {
         visibleStat: 'points'
     }
 }
+
+export default initialState
