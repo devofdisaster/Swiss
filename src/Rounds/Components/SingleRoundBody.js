@@ -22,8 +22,9 @@ export default class SingleRoundBody extends React.Component {
     renderRow(match) {
         return (
             <SingleRoundRow
-                selectedResult={null}
+                selectedResult={match.result}
                 onResultChange={this.props.onResultChange}
+                finished={this.props.finished}
                 {...match}
             />
         )

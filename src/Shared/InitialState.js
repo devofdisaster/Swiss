@@ -10,6 +10,7 @@ const initialAction = NavigationActions.reset({
 
 const initialState = {
     nav: MainScreen.router.getStateForAction(initialAction),
+    matches: {},
     players: {},
     rounds: [],
     playersList: {

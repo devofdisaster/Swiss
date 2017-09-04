@@ -13,6 +13,7 @@ export default function MatchResultPicker(props) {
             <Picker
                 selectedValue={props.selected}
                 onValueChange={props.onChange}
+                enabled={props.enabled}
             >
                 <Picker.Item value={null} label="_-_"/>
                 <Picker.Item value="5-0" label="5-0"/>
