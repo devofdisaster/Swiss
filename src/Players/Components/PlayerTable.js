@@ -84,6 +84,7 @@ function PlayerTable(props) {
             <PlayerTableBody
                 players={props.players}
                 style={bodyStyle}
+                onPlayerClick={props.onPlayerClick}
                 onPlayerLongClick={props.onPlayerLongClick}
             />
         </View>
