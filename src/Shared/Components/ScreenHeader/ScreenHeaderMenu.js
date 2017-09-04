@@ -43,6 +43,7 @@ function renderItem(item) {
             background={background}
             useForeground={TouchableNativeFeedback.canUseNativeForeground()}
             onPress={item.onPress}
+            onLongPress={item.onLongPress || (() => {})}
             key={item.name}
         >
             <View style={itemViewStyle}>

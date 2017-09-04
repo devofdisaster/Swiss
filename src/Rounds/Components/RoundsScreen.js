@@ -2,33 +2,48 @@ import React from 'react'
 import { TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import SingleRoundTab from './SingleRoundTab'
+import {View} from 'react-native'
+import RoundsHeader from './RoundsHeader'
 
+const screenStyle = { display: 'flex', justifyContent: 'flex-start', alignItems: 'stretch', flex: 1 }
 const tabNavigatorConfig = {
     animationEnabled: true,
     backBehavior: 'none',
     lazy: true,
     tabBarOptions: {
+        activeTintColor: 'black',
+        inactiveTintColor: 'dimgray',
+        indicatorStyle: { backgroundColor: 'black' },
         scrollEnabled: true,
+        style: { backgroundColor: 'lightblue', borderTopWidth: 1, borderTopColor: 'black' },
+        tabStyle: { width: 100 }
     },
     swipeEnabled: true
 }
 
+
 class RoundsScreen extends React.Component {
     render() {
-        const RoundTabs = TabNavigator(this.props.routes, tabNavigatorConfig);
+        const RoundTabs = this.props.count ?
+            TabNavigator(this.props.routes, tabNavigatorConfig) :
+            View
 
         return (
-            <RoundTabs/>
+            <View style={screenStyle}>
+                <RoundsHeader/>
+                <RoundTabs/>
+            </View>
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        routes: {
-            Round1: { screen: SingleRoundTab },
-            Round2: { screen: SingleRoundTab }
-        }
+        count: state.rounds.length,
+        routes: state.rounds.reduce(
+            (routes, round, index) => ({ ...routes, [index + 1]: { screen: SingleRoundTab } }),
+            {}
+        )
     }
 }
 const mapDispatchToProps = (dispatch) => ({})

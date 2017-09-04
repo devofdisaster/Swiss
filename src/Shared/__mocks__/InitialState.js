@@ -1,5 +1,6 @@
 export default {
     nav: {},
     players: {},
-    playersList: []
+    playersList: [],
+    rounds: []
 }
