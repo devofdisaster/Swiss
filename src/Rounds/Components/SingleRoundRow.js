@@ -19,12 +19,23 @@ const nameStyle = {
 export default function SingleRoundRow(props) {
     return (
         <View style={{...matchStyle, ...props.style}}>
-            <Text style={nameStyle}>{props.player1name}</Text>
+            <Text
+                style={nameStyle}
+                disabled={props.finished}
+            >
+                {props.player1name}
+            </Text>
             <MatchResultPicker
                 onChange={(result) => props.onResultChange && props.onResultChange(props.id, result)}
-                selected={props.selectedResult}
+                selected={props.result}
+                enabled={!props.finished}
             />
-            <Text style={nameStyle}>{props.player2name}</Text>
+            <Text
+                style={nameStyle}
+                disabled={props.finished}
+            >
+                {props.player2name}
+            </Text>
         </View>
     )
 }
