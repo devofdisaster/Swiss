@@ -1,7 +1,7 @@
 import React from 'react'
 import { TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
-import SingleRoundTab from './SingleRoundTab'
+import SingleRoundTable from './SingleRoundTable'
 import {View} from 'react-native'
 import RoundsHeader from './RoundsHeader'
 
@@ -41,7 +41,7 @@ const mapStateToProps = (state) => {
     return {
         count: state.rounds.length,
         routes: state.rounds.reduce(
-            (routes, round, index) => ({ ...routes, [index + 1]: { screen: SingleRoundTab } }),
+            (routes, round, index) => ({ ...routes, [index + 1]: { screen: SingleRoundTable } }),
             {}
         )
     }
