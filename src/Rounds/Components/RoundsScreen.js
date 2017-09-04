@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import SingleRoundTable from './SingleRoundTable'
 import {View} from 'react-native'
 import RoundsHeader from './RoundsHeader'
+import StartFirstRound from './StartFirstRoundView'
+import GenerateNewRound from '../ActionCreators/GenerateNewRound'
 
 const screenStyle = { display: 'flex', justifyContent: 'flex-start', alignItems: 'stretch', flex: 1 }
 const tabNavigatorConfig = {
@@ -24,14 +26,14 @@ const tabNavigatorConfig = {
 
 class RoundsScreen extends React.Component {
     render() {
-        const RoundTabs = this.props.count ?
-            TabNavigator(this.props.routes, tabNavigatorConfig) :
-            View
-
         return (
             <View style={screenStyle}>
                 <RoundsHeader/>
-                <RoundTabs/>
+                {
+                    this.props.count ?
+                        TabNavigator(this.props.routes, tabNavigatorConfig) :
+                        <StartFirstRound onPress={this.props.startNewRound}/>
+                }
             </View>
         )
     }
@@ -46,6 +48,8 @@ const mapStateToProps = (state) => {
         )
     }
 }
-const mapDispatchToProps = (dispatch) => ({})
+const mapDispatchToProps = (dispatch) => ({
+    startNewRound: () => dispatch(GenerateNewRound())
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoundsScreen)
