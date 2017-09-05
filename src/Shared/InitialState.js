@@ -1,6 +1,5 @@
 import { NavigationActions } from 'react-navigation'
 import MainScreen from '../Navigation/MainScreen'
-import initialDevState from './InitialState.dev.js'
 
 const initialAction = NavigationActions.reset({
     index: 0,
@@ -9,8 +8,35 @@ const initialAction = NavigationActions.reset({
     ]
 })
 
+function fabricateStateForRoundTabNavigator() {
+    const state = MainScreen.router.getStateForAction(initialAction)
+    const roundsIndex = state.routes[0].routes.findIndex((route) => route.key === 'rounds')
+
+    return {
+        ...state,
+        routes: [
+            {
+                ...state.routes[0],
+                routes: [
+                    ...state.routes[0].routes.slice(0, roundsIndex),
+                    {
+                        ...state.routes[0].routes[roundsIndex],
+                        routes: [
+                            {
+                                ...state.routes[0].routes[roundsIndex].routes[0]
+                            }
+                        ]
+                    },
+                    ...state.routes[0].routes.slice(roundsIndex + 1)
+                ]
+            },
+            ...state.routes.slice(1)
+        ]
+    }
+}
+
 const initialState = {
-    nav: MainScreen.router.getStateForAction(initialAction),
+    nav: fabricateStateForRoundTabNavigator(),
     matches: {},
     players: {},
     rounds: [],
@@ -22,4 +48,4 @@ const initialState = {
     }
 }
 
-export default initialDevState()
+export default initialState

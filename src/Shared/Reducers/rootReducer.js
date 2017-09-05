@@ -7,7 +7,7 @@ import RoundsReducer from '../../Rounds/Reducers/RoundsReducer'
 
 export default rootReducer = (state = InitialState, action) => ({
     matches: MatchesReducer(state.matches, action),
-    nav: NavigationReducer(state.nav, action),
+    nav: NavigationReducer(state.nav, state.rounds, action),
     players: PlayersReducer(state.players, action),
     playersList: PlayersListReducer(state.playersList, state.players, action),
     rounds: RoundsReducer(state.rounds, action)

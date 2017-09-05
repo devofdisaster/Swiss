@@ -1,5 +1,5 @@
 import React from 'react'
-import {addNavigationHelpers, TabBarTop, TabNavigator, TabRouter} from 'react-navigation'
+import { TabBarTop, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import SingleRoundTable from './SingleRoundTable'
 import {View} from 'react-native'
@@ -27,16 +27,17 @@ const tabNavigatorConfig = {
 
 class RoundsScreen extends React.Component {
     render() {
-        const ContentComponent = this.props.count ?
-            TabNavigator(this.props.routes, tabNavigatorConfig) :
-            StartFirstRound
+        let ContentComponent = <StartFirstRound onPress={this.props.startNewRound} />
+
+        if (this.props.count) {
+            ContentComponent = TabNavigator(this.props.routes, tabNavigatorConfig)
+            ContentComponent = <ContentComponent navigation={this.props.navigation} />
+        }
 
         return (
             <View style={screenStyle}>
                 <RoundsHeader/>
-                <ContentComponent
-                    onPress={this.props.startNewRound}
-                />
+                { ContentComponent }
             </View>
         )
     }
