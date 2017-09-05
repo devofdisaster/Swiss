@@ -26,14 +26,14 @@ const tabNavigatorConfig = {
 
 class RoundsScreen extends React.Component {
     render() {
+        const ContentComponent = this.props.count ?
+            TabNavigator(this.props.routes, tabNavigatorConfig) :
+            StartFirstRound
+
         return (
             <View style={screenStyle}>
                 <RoundsHeader/>
-                {
-                    this.props.count ?
-                        TabNavigator(this.props.routes, tabNavigatorConfig) :
-                        <StartFirstRound onPress={this.props.startNewRound}/>
-                }
+                <ContentComponent onPress={this.props.startNewRound}/>
             </View>
         )
     }
