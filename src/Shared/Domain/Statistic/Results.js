@@ -1,12 +1,20 @@
 import Statistic from '../Statistic'
 
 export default class Results extends Statistic {
+    static PLAYER_1_WIN = '5-0'
+    static PLAYER_2_WIN = '0-5'
+    static DRAW         = '2-2'
+
     static renderName() {
         return super.renderName('results')
     }
 
     constructor (value) {
-        super('results', value)
+        super('results', {...value})
+    }
+
+    getDraws() {
+        return this._value.draws
     }
 
     getLosses() {
@@ -23,6 +31,10 @@ export default class Results extends Statistic {
         }
 
         return this._value.wins < otherResults.getWins()
+    }
+
+    isEqualTo(otherResults) {
+        return this._value.wins === otherResults.getWins() && this._value.losses === otherResults.getLosses()
     }
 
     toString () {

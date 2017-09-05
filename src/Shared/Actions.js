@@ -7,6 +7,7 @@ const PLAYERS_SAVE_EXISTING         = 'Players/SaveExisting'
 const PLAYERS_LIST_REFRESH          = 'PlayersList/Refresh'
 const PLAYERS_LIST_CHANGE_STAT      = 'PlayersList/ChangeStat'
 const PLAYERS_LIST_SORT_BY_COLUMN   = 'PlayersList/SortByColumn'
+const ROUNDS_ADD_NEW                = 'Rounds/AddNew'
 const ROUNDS_EDIT                   = 'Rounds/Edit'
 const ROUNDS_ATTEMPT_FINISH         = 'Rounds/AttemptFinish'
 const ROUNDS_FINISH                 = 'Rounds/Finish'
@@ -30,6 +31,7 @@ export const Types = {
     PLAYERS_LIST_REFRESH,
     PLAYERS_LIST_CHANGE_STAT,
     PLAYERS_LIST_SORT_BY_COLUMN,
+    ROUNDS_ADD_NEW,
     ROUNDS_EDIT,
     ROUNDS_ATTEMPT_FINISH,
     ROUNDS_FINISH,

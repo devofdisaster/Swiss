@@ -47,6 +47,10 @@ export default function (state = initialState.players, action) {
                 ...state,
                 [action.player.id]: {...state[action.player.id], ...action.player}
             }
+        case Types.ROUNDS_ADD_NEW:
+            return {
+                ...action.players
+            }
         default:
             return state
     }

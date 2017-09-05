@@ -3,6 +3,7 @@ import { ToastAndroid } from 'react-native'
 import { connect } from 'react-redux'
 import ScreenHeader from '../../Shared/Components/ScreenHeader'
 import OpenDrawer from '../../Shared/ActionCreators/OpenDrawer'
+import GenerateNewRound from '../ActionCreators/GenerateNewRound'
 
 const mapStateToProps = (state) => ({
     count: state.rounds.length
@@ -15,8 +16,8 @@ const mapDispatchToProps = (dispatch) => ({
             {
                 name: 'GenerateNewRound',
                 image: require('material-design-icons/content/drawable-hdpi/ic_add_circle_outline_black_36dp.png'),
-                onPress: () => {},
-                onLongPress: () => ToastAndroid.show('Generate new round', ToastAndroid.SHORT)
+                onPress: () => dispatch(GenerateNewRound()),
+                onLongPress: () => dispatch(GenerateNewRound())//ToastAndroid.show('Generate new round', ToastAndroid.SHORT)
             },
             {
                 name: 'CustomizeNewRound',

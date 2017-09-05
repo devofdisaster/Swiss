@@ -4,9 +4,10 @@ import Points from './Statistic/Points'
 import Results from './Statistic/Results'
 import SoS from './Statistic/SoS'
 import SSoS from './Statistic/SSoS'
+import Match from './Match'
 
 export default class Player {
-    constructor(data) {
+    constructor(data, matches = []) {
         this._id = data.id
         this._enabled = data.enabled
         this._firstname = (data.firstname || '').trim()
@@ -21,6 +22,7 @@ export default class Player {
             ssos: new SSoS(data.ssos)
         }
         this._originalOrder = data.order
+        this._matches = matches
     }
 
     disable() {
@@ -29,6 +31,18 @@ export default class Player {
 
     enable() {
         this._enabled = true
+    }
+
+    getFirstname() {
+        return this._firstname
+    }
+
+    getNickname() {
+        return this._nickname
+    }
+
+    getLastname() {
+        return this._lastname
     }
 
     getId() {
@@ -45,6 +59,14 @@ export default class Player {
 
     hasLowerStat(stat, otherPlayer) {
         return this._stats[stat].isLowerThan(otherPlayer.getStatistic(stat))
+    }
+
+    hasEqualStat(stat, otherPlayer) {
+        return this._stats[stat].isEqualTo(otherPlayer.getStatistic(stat))
+    }
+
+    hasPlayedWith(otherPlayer) {
+        return this._matches.filter((match) => match.hasPlayer(otherPlayer)).length
     }
 
     isEnabled() {
@@ -71,5 +93,19 @@ export default class Player {
 
     renderStatistic(name) {
         return this._stats[name].toString()
+    }
+
+    addMatch(match) {
+        this._matches.push(match)
+    }
+
+    removeMatch(nonGrata) {
+        const index = this._matches.findIndex((match) => match.getId() === nonGrata.getId())
+
+        this._matches.splice(index, 1)
+    }
+
+    getMatchIds() {
+        return this._matches.map((match) => match.getId())
     }
 }
