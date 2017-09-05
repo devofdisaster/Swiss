@@ -1,3 +1,3 @@
 import { NavigationActions } from 'react-navigation'
 
-export default (index) => NavigationActions.navigate({ routeName: `Round-${index + 1}` })
+export default (index) => NavigationActions.navigate({ routeName: `Round-${index + 1}`, index })
