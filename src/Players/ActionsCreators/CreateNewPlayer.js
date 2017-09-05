@@ -1,14 +1,14 @@
 import uuid from 'uuid'
 import { NavigationActions } from 'react-navigation'
 import SaveNewPlayer from './SaveNewPlayer'
-import AddPlayerToList from './RefreshPlayerList'
+import RefreshPlayerList from './RefreshPlayerList'
 
 export default function CreateNewPlayer(player) {
     player.id = uuid()
 
     return (dispatch) => {
         dispatch(SaveNewPlayer(player))
-        dispatch(AddPlayerToList(player))
+        dispatch(RefreshPlayerList())
         dispatch(NavigationActions.back())
     }
 }

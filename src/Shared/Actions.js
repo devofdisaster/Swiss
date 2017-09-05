@@ -1,5 +1,7 @@
 const PLAYERS_ENABLE                = 'Players/Enable'
+const PLAYERS_ATTEMPT_DISABLE       = 'Players/AttemptDisable'
 const PLAYERS_DISABLE               = 'Players/Disable'
+const PLAYERS_DELETE                = 'Players/Delete'
 const PLAYERS_SAVE_NEW              = 'Players/SaveNew'
 const PLAYERS_SAVE_EXISTING         = 'Players/SaveExisting'
 const PLAYERS_LIST_REFRESH          = 'PlayersList/Refresh'
@@ -20,7 +22,9 @@ export const create = (type) => (payload = {}) => ({
 
 export const Types = {
     PLAYERS_ENABLE,
+    PLAYERS_ATTEMPT_DISABLE,
     PLAYERS_DISABLE,
+    PLAYERS_DELETE,
     PLAYERS_SAVE_EXISTING,
     PLAYERS_SAVE_NEW,
     PLAYERS_LIST_REFRESH,

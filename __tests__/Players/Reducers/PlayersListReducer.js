@@ -1,6 +1,7 @@
 import PlayersListReducer   from '../../../src/Players/Reducers/PlayersListReducer'
 import RefreshPlayerList    from '../../../src/Players/ActionsCreators/RefreshPlayerList'
 import ChangeDisplayedStat  from '../../../src/Players/ActionsCreators/ChangeDisplayedStat'
+import DeletePlayer from '../../../src/Players/ActionsCreators/DeletePlayer'
 
 jest.mock('../../../src/Shared/InitialState');
 
@@ -22,5 +23,16 @@ describe('PlayersListReducer', () => {
         const expectedState = { players: [], visibleStat: 'results', order: 'asc', sortBy: 'order'}
 
         expect(PlayersListReducer(listState, playersState, ChangeDisplayedStat(newStat))).toEqual(expectedState)
+    })
+
+    it('should remove player id from visible players on Players/Delete', () => {
+        const listState = { players: ['player-five-hundred'], visibleStat: 'points', order: 'asc', sortBy: 'order' }
+        const playersState = {
+            ['player-five-hundred']: { id: 'player-five-hundred', nickname: 'xXxLegolas9273xXx', score: 9001 }
+        }
+        const expectedState = { players: [], visibleStat: 'points', order: 'asc', sortBy: 'order'}
+
+        expect(PlayersListReducer(listState, playersState, DeletePlayer('player-five-hundred'))).toEqual(expectedState)
+
     })
 })

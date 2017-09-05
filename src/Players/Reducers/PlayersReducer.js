@@ -13,6 +13,21 @@ export default function (state = initialState.players, action) {
                 ...state,
                 [action.id]: {...state[action.id], enabled: false}
             }
+        case Types.PLAYERS_DELETE:
+            const newState = {...state}
+            const deletedOrder = state[action.id].order
+
+            Object.keys(state)
+                .filter((id) => state[id].order > deletedOrder)
+                .map((id) => ({...state[id]}))
+                .forEach((player) => {
+                    --player.order
+                    newState[player.id] = player
+                })
+
+            delete newState[action.id]
+
+            return newState
         case Types.PLAYERS_SAVE_NEW:
             const emptyStats = {
                 comparison: { plus: 0, minus: 0 },

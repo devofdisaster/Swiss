@@ -11,6 +11,7 @@ import DisablePlayer from '../ActionsCreators/DisablePlayer'
 import EnablePlayer from '../ActionsCreators/EnablePlayer'
 import EditExistingPlayer from '../ActionsCreators/EditExistingPlayer'
 import ShowPlayerDetails from '../ActionsCreators/ShowPlayerDetails'
+import AttemptDisablePlayer from '../ActionsCreators/AttemptDisablePlayer'
 
 const tableStyle = {
     padding: 10,
@@ -48,7 +49,7 @@ function showPlayerOptions(dispatch, player) {
     const editButton    = { text: 'Edit', onPress: () => dispatch(EditExistingPlayer(player.id)) }
     const detailsButton = { text: 'Details', onPress: () => dispatch(ShowPlayerDetails(player.id)) }
     const suspendButton = player.enabled ?
-        { text: 'Disable', onPress: () => dispatch(DisablePlayer(player.id)) } :
+        { text: 'Disable/Remove', onPress: () => dispatch(AttemptDisablePlayer(player.id)) } :
         { text: 'Enable',  onPress: () => dispatch(EnablePlayer(player.id)) }
 
     Alert.alert(

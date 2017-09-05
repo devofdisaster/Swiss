@@ -3,6 +3,7 @@ import SaveNewPlayer        from '../../../src/Players/ActionsCreators/SaveNewPl
 import SaveExistingPlayer   from '../../../src/Players/ActionsCreators/SaveExistingPlayer'
 import DisablePlayer from '../../../src/Players/ActionsCreators/DisablePlayer'
 import EnablePlayer from '../../../src/Players/ActionsCreators/EnablePlayer'
+import DeletePlayer from '../../../src/Players/ActionsCreators/DeletePlayer'
 
 jest.mock('../../../src/Shared/InitialState');
 
@@ -62,6 +63,20 @@ describe('PlayersReducer', () => {
         }
 
         expect(PlayersReducer(state, EnablePlayer('player-two'))).toEqual(expectedState)
+    })
+
+    it('should delete given player and update other players order on Players/Delete', () => {
+        const state = {
+            'player-one': { id: 'player-one', nickname: 'Jeronimo', score: 37, order: 0, enabled: true },
+            'player-two': { id: 'player-two', nickname: 'Martin', score: 56, order: 1, enabled: false },
+            'player-three': { id: 'player-three', nickname: 'Brajan', score: 56, order: 2, enabled: false },
+        }
+        const expectedState = {
+            'player-two': { id: 'player-two', nickname: 'Martin', score: 56, order: 0, enabled: false },
+            'player-three': { id: 'player-three', nickname: 'Brajan', score: 56, order: 1, enabled: false },
+        }
+
+        expect(PlayersReducer(state, DeletePlayer('player-one'))).toEqual(expectedState)
     })
 })
 

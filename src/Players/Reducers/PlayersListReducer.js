@@ -7,6 +7,11 @@ export default function (listState = InitialState.playersList, playersState = In
     let visibleStat
 
     switch (action.type) {
+        case Types.PLAYERS_DELETE:
+            return {
+                ...listState,
+                players: listState.players.filter((id) => id !== action.id)
+            }
         case Types.PLAYERS_LIST_REFRESH:
             return {
                 ...listState,
