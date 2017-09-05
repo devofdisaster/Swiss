@@ -1,5 +1,5 @@
 import React from 'react'
-import { TabNavigator } from 'react-navigation'
+import {addNavigationHelpers, TabBarTop, TabNavigator, TabRouter} from 'react-navigation'
 import { connect } from 'react-redux'
 import SingleRoundTable from './SingleRoundTable'
 import {View} from 'react-native'
@@ -20,9 +20,10 @@ const tabNavigatorConfig = {
         style: { backgroundColor: 'lightblue', borderTopWidth: 1, borderTopColor: 'black' },
         tabStyle: { width: 100 }
     },
-    swipeEnabled: true
+    swipeEnabled: true,
+    tabBarComponent: TabBarTop,
+    tabBarPosition: 'top'
 }
-
 
 class RoundsScreen extends React.Component {
     render() {
@@ -33,7 +34,9 @@ class RoundsScreen extends React.Component {
         return (
             <View style={screenStyle}>
                 <RoundsHeader/>
-                <ContentComponent onPress={this.props.startNewRound}/>
+                <ContentComponent
+                    onPress={this.props.startNewRound}
+                />
             </View>
         )
     }
@@ -43,7 +46,13 @@ const mapStateToProps = (state) => {
     return {
         count: state.rounds.length,
         routes: state.rounds.reduce(
-            (routes, round, index) => ({ ...routes, [index + 1]: { screen: SingleRoundTable } }),
+            (routes, round, index) => ({
+                ...routes,
+                [`Round-${index + 1}`]: {
+                    screen: SingleRoundTable,
+                    navigationOptions: ({ navigation }) => ({ title: `${index + 1}` })
+                }
+            }),
             {}
         )
     }

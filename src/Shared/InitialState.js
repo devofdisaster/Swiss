@@ -1,5 +1,6 @@
 import { NavigationActions } from 'react-navigation'
 import MainScreen from '../Navigation/MainScreen'
+import initialDevState from './InitialState.dev.js'
 
 const initialAction = NavigationActions.reset({
     index: 0,
@@ -21,4 +22,4 @@ const initialState = {
     }
 }
 
-export default initialState
+export default initialDevState()

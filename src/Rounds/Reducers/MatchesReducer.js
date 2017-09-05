@@ -7,6 +7,10 @@ export default function MatchesReducer(state, action) {
                 ...state,
                 [action.id]: { ...state[action.id], result: action.result }
             }
+        case Types.ROUNDS_ADD_NEW:
+            return {
+                ...action.matches
+            }
         default:
             return state
     }

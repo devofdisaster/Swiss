@@ -6,7 +6,7 @@ export default class Comparison extends Statistic {
     }
 
     constructor(value) {
-        super('comparison', value)
+        super('comparison', {...value})
     }
 
     getNegative() {
@@ -23,6 +23,10 @@ export default class Comparison extends Statistic {
         }
 
         return this.getPositive() < otherValue.getPositive()
+    }
+
+    isEqualTo(otherValue) {
+        return this.getPositive() === otherValue.getPositive() && this.getNegative() === otherValue.getNegative()
     }
 
     toString () {

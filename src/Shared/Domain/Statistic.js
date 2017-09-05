@@ -31,6 +31,10 @@ export default class Statistic {
         return this._value < otherStat.getValue()
     }
 
+    isEqualTo(otherStat) {
+        return this._value === otherStat.getValue()
+    }
+
     renderName() {
         return Statistic.renderName(this._key)
     }

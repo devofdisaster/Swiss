@@ -13,8 +13,10 @@ export default (index) => (dispatch, getState) => {
     if (!allMatchesHaveResults) {
         Alert.alert(`Can't finish!`, 'Fill in missing match results!')
 
-        return
+        return false
     }
 
     dispatch(FinishRound(index))
+
+    return true
 }

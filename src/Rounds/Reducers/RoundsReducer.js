@@ -15,6 +15,10 @@ export default function RoundsReducer(state = InitialState.rounds, action) {
                 { ...state[action.round], finished: true },
                 ...state.slice(action.round + 1),
             ]
+        case Types.ROUNDS_ADD_NEW:
+            return [
+                ...action.rounds
+            ]
         default:
             return state
     }

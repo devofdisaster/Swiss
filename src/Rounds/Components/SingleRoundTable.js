@@ -31,20 +31,19 @@ class SingleRoundTable extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const roundIndex = parseInt(ownProps.navigation.state.key, 10) - 1
+    const roundIndex = parseInt(ownProps.navigation.state.key.replace('Round-', ''), 10) - 1
 
     return {
         matches: state.rounds[roundIndex].matches.map((id) => {
             const matchData = state.matches[id]
             const playerOne = new Player(state.players[matchData.player1])
             const playerTwo = new Player(state.players[matchData.player2])
-            const match = new Match(matchData.id, playerOne, playerTwo, matchData.round, matchData.result)
 
             return {
-                id: match.getId(),
+                id: matchData.id,
                 player1name: playerOne.renderName(),
                 player2name: playerTwo.renderName(),
-                result: match.getResultKey()
+                result: matchData.result
             }
         }),
         finished: !!state.rounds[roundIndex].finished
@@ -52,7 +51,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    const roundIndex = parseInt(ownProps.navigation.state.key, 10) - 1
+    const roundIndex = parseInt(ownProps.navigation.state.key.replace('Round-', ''), 10) - 1
 
     return {
         onResultChange: (id, value) => dispatch(ChangeMatchResult(id, value)),
