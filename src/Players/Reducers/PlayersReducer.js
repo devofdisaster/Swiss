@@ -59,6 +59,17 @@ export default function (state = initialState.players, action) {
             Object.keys(action.scores).forEach((id) => newState[id] = {...newState[id], ...action.scores[id]})
 
             return newState
+        case Types.ROUNDS_DELETE_LAST:
+            newState = {}
+
+            Object.values(state).forEach((player) => {
+                newState[player.id] = {
+                    ...player,
+                    matches: player.matches.filter((id) => action.round.matches.indexOf(id) < 0)
+                }
+            })
+
+            return newState
         default:
             return state
     }

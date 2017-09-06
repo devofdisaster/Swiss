@@ -5,13 +5,14 @@ import DisablePlayer from '../../../src/Players/ActionsCreators/DisablePlayer'
 import EnablePlayer from '../../../src/Players/ActionsCreators/EnablePlayer'
 import DeletePlayer from '../../../src/Players/ActionsCreators/DeletePlayer'
 import UpdateScores from '../../../src/Players/ActionsCreators/UpdateScores'
+import DeleteLastRound from '../../../src/Rounds/ActionCreators/DeleteLastRound'
 
 jest.mock('../../../src/Shared/InitialState');
 
 describe('PlayersReducer', () => {
     const state = {
-        'player-one': { id: 'player-one', nickname: 'Jeronimo', order: 0, enabled: true },
-        'player-two': { id: 'player-two', nickname: 'Martin', order: 1, enabled: false },
+        'player-one': { id: 'player-one', nickname: 'Jeronimo', order: 0, enabled: true, matches: [1,2,3,4] },
+        'player-two': { id: 'player-two', nickname: 'Martin', order: 1, enabled: false, matches: [1,2,3,4] },
     }
 
     it('should add a new player on Players/SaveNew', () => {
@@ -40,8 +41,8 @@ describe('PlayersReducer', () => {
     it('should update an existing player on Players/SaveExisting', () => {
         const existingPlayer = { id: 'player-one', nickname: 'Bob' }
         const expectedState = {
-            'player-one': { id: 'player-one', nickname: 'Bob', order: 0, enabled: true },
-            'player-two': { id: 'player-two', nickname: 'Martin', order: 1, enabled: false },
+            'player-one': { id: 'player-one', nickname: 'Bob', order: 0, enabled: true, matches: [1,2,3,4] },
+            'player-two': { id: 'player-two', nickname: 'Martin', order: 1, enabled: false, matches: [1,2,3,4] },
         }
 
         expect(PlayersReducer(state, SaveExistingPlayer(existingPlayer))).toEqual(expectedState)
@@ -49,8 +50,8 @@ describe('PlayersReducer', () => {
 
     it('should disable a player on Players/Disable', () => {
         const expectedState = {
-            'player-one': { id: 'player-one', nickname: 'Jeronimo', order: 0, enabled: false },
-            'player-two': { id: 'player-two', nickname: 'Martin', order: 1, enabled: false },
+            'player-one': { id: 'player-one', nickname: 'Jeronimo', order: 0, enabled: false, matches: [1,2,3,4] },
+            'player-two': { id: 'player-two', nickname: 'Martin', order: 1, enabled: false, matches: [1,2,3,4] },
         }
 
         expect(PlayersReducer(state, DisablePlayer('player-one'))).toEqual(expectedState)
@@ -58,8 +59,8 @@ describe('PlayersReducer', () => {
 
     it('should enable a player on Players/Enable', () => {
         const expectedState = {
-            'player-one': { id: 'player-one', nickname: 'Jeronimo', order: 0, enabled: true },
-            'player-two': { id: 'player-two', nickname: 'Martin', order: 1, enabled: true },
+            'player-one': { id: 'player-one', nickname: 'Jeronimo', order: 0, enabled: true, matches: [1,2,3,4] },
+            'player-two': { id: 'player-two', nickname: 'Martin', order: 1, enabled: true, matches: [1,2,3,4] },
         }
 
         expect(PlayersReducer(state, EnablePlayer('player-two'))).toEqual(expectedState)
@@ -81,8 +82,12 @@ describe('PlayersReducer', () => {
 
     it('should update player scores on Players/UpdateScores', () => {
         const expectedState = {
-            'player-one': { id: 'player-one', nickname: 'Jeronimo', points: 77, order: 0, enabled: true },
-            'player-two': { id: 'player-two', nickname: 'Martin', points: 77, order: 1, enabled: false },
+            'player-one': {
+                id: 'player-one', nickname: 'Jeronimo', points: 77, order: 0, enabled: true, matches: [1,2,3,4]
+            },
+            'player-two': {
+                id: 'player-two', nickname: 'Martin', points: 77, order: 1, enabled: false, matches: [1,2,3,4]
+            }
         }
         const freshScores = {
             'player-one': { points: 77 },
@@ -90,6 +95,19 @@ describe('PlayersReducer', () => {
         }
 
         expect(PlayersReducer(state, UpdateScores(freshScores))).toEqual(expectedState)
+    })
+
+    it('should remove matches from players if the match was in the deleted round on Rounds/DeleteLast', () => {
+        const expectedState = {
+            'player-one': {
+                id: 'player-one', nickname: 'Jeronimo', order: 0, enabled: true, matches: [1,2]
+            },
+            'player-two': {
+                id: 'player-two', nickname: 'Martin', order: 1, enabled: false, matches: [1,2]
+            }
+        }
+
+        expect(PlayersReducer(state, DeleteLastRound({ index: 1, matches: [3,4] }))).toEqual(expectedState)
     })
 })
 
