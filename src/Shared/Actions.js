@@ -4,6 +4,7 @@ const PLAYERS_DISABLE               = 'Players/Disable'
 const PLAYERS_DELETE                = 'Players/Delete'
 const PLAYERS_SAVE_NEW              = 'Players/SaveNew'
 const PLAYERS_SAVE_EXISTING         = 'Players/SaveExisting'
+const PLAYERS_UPDATE_SCORES         = 'Players/UpdateScores'
 const PLAYERS_LIST_REFRESH          = 'PlayersList/Refresh'
 const PLAYERS_LIST_CHANGE_STAT      = 'PlayersList/ChangeStat'
 const PLAYERS_LIST_SORT_BY_COLUMN   = 'PlayersList/SortByColumn'
@@ -28,6 +29,7 @@ export const Types = {
     PLAYERS_DELETE,
     PLAYERS_SAVE_EXISTING,
     PLAYERS_SAVE_NEW,
+    PLAYERS_UPDATE_SCORES,
     PLAYERS_LIST_REFRESH,
     PLAYERS_LIST_CHANGE_STAT,
     PLAYERS_LIST_SORT_BY_COLUMN,

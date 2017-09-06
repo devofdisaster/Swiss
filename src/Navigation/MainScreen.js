@@ -1,10 +1,12 @@
-import { DrawerNavigator, NavigationActions } from 'react-navigation';
+import React from 'react'
+import {DrawerItems, DrawerNavigator, NavigationActions} from 'react-navigation';
 import { BackHandler } from 'react-native'
 
 import StandingsTab from './StandingsTab';
 import SettingsTab from './SettingsTab'
 import PlayersTab from '../Players/PlayersTab'
 import RoundsTab from '../Rounds/RoundsTab'
+import RecalculateScores from '../Players/ActionsCreators/RecalculateScores'
 
 const routes = {
     players:    { screen: PlayersTab,   name: 'players'   },
@@ -12,7 +14,26 @@ const routes = {
     standings:  { screen: StandingsTab, name: 'standings' },
     settings:   { screen: SettingsTab,  name: 'settings'  }
 }
-const config = { initialRouteName: 'players' }
+
+const config = {
+    initialRouteName: 'players',
+    contentComponent: (props) => <DrawerItems
+        {
+            ...{
+                ...props,
+                onItemPress: ({ route }) => {
+                    const { dispatch } = props.navigation
+
+                    if (0 === ['players', 'settings'].indexOf(route.routeName)) {
+                        dispatch(RecalculateScores())
+                    }
+
+                    dispatch(NavigationActions.navigate({ routeName: route.routeName }))
+                }
+            }
+        }
+    />
+}
 
 export default class MainScreen extends DrawerNavigator(routes, config) {
     shouldCloseApp(navState) {
@@ -29,6 +50,7 @@ export default class MainScreen extends DrawerNavigator(routes, config) {
                 return false
             }
 
+            dispatch(RecalculateScores())
             dispatch(NavigationActions.back())
             return true
         })

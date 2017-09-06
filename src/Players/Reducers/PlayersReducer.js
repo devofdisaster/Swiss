@@ -2,6 +2,8 @@ import initialState from '../../Shared/InitialState'
 import { Types } from '../../Shared/Actions'
 
 export default function (state = initialState.players, action) {
+    let newState
+
     switch (action.type) {
         case Types.PLAYERS_ENABLE:
             return {
@@ -14,7 +16,7 @@ export default function (state = initialState.players, action) {
                 [action.id]: {...state[action.id], enabled: false}
             }
         case Types.PLAYERS_DELETE:
-            const newState = {...state}
+            newState = {...state}
             const deletedOrder = state[action.id].order
 
             Object.keys(state)
@@ -51,6 +53,12 @@ export default function (state = initialState.players, action) {
             return {
                 ...action.players
             }
+        case Types.PLAYERS_UPDATE_SCORES:
+            newState = {...state}
+
+            Object.keys(action.scores).forEach((id) => newState[id] = {...newState[id], ...action.scores[id]})
+
+            return newState
         default:
             return state
     }

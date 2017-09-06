@@ -11,7 +11,7 @@ describe('SSoS', () => {
 
     describe('toString()', () => {
         it('should render ssos value', () => {
-            expect(ssos.toString()).toEqual('10')
+            expect(ssos.toString()).toEqual('10.000')
         })
     })
 })

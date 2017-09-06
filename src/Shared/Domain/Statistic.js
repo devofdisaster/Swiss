@@ -42,5 +42,9 @@ export default class Statistic {
     toString() {
         return `${this._value || 0}`
     }
+
+    add(value) {
+        this._value += value
+    }
 }
 

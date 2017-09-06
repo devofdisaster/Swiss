@@ -8,4 +8,8 @@ export default class SoS extends Statistic {
     constructor (value) {
         super('sos', value)
     }
+
+    toString() {
+        return this._value.toFixed(3)
+    }
 }

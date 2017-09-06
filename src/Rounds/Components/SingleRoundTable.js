@@ -37,12 +37,12 @@ const mapStateToProps = (state, ownProps) => {
         matches: state.rounds[roundIndex].matches.map((id) => {
             const matchData = state.matches[id]
             const playerOne = new Player(state.players[matchData.player1])
-            const playerTwo = new Player(state.players[matchData.player2])
+            const playerTwo = matchData.player2 ? new Player(state.players[matchData.player2]) : null
 
             return {
                 id: matchData.id,
                 player1name: playerOne.renderName(),
-                player2name: playerTwo.renderName(),
+                player2name: playerTwo ? playerTwo.renderName() : 'BYE',
                 result: matchData.result
             }
         }),

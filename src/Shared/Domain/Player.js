@@ -108,4 +108,65 @@ export default class Player {
     getMatchIds() {
         return this._matches.map((match) => match.getId())
     }
+
+    resetStats() {
+        this._stats.comparison = new Comparison({ plus: 0, minus: 0});
+        this._stats.games = new Games(0);
+        this._stats.points = new Points(0);
+        this._stats.results = new Results({ wins: 0, draws: 0, losses: 0});
+        this._stats.sos = new SoS(0);
+        this._stats.ssos = new SSoS(0);
+    }
+
+    incrementGamesPlayed() {
+        this._stats.games.increment()
+    }
+
+    addPoints(points) {
+        this._stats.points.add(points)
+    }
+
+    addComparison(plus, minus) {
+        this._stats.comparison.addPositive(plus)
+        this._stats.comparison.addNegative(minus)
+    }
+
+    addResults(wins, draws, losses) {
+        if (wins) {
+            this._stats.results.addWins(wins*1)
+        }
+
+        if (draws) {
+            this._stats.results.addDraws(draws*1)
+        }
+
+        if (losses) {
+            this._stats.results.addLosses(losses*1)
+        }
+    }
+
+    addSoS(value) {
+        this._stats.sos.add(value)
+    }
+
+    addSSoS(value) {
+        this._stats.ssos.add(value)
+    }
+
+    getOpponents() {
+        return this._matches
+            .map((match) => match.getOpponentTo(this))
+            .filter((player) => !!player)
+    }
+
+    getPlainStats() {
+        return {
+            games: this._stats.games.getValue(),
+            points: this._stats.points.getValue(),
+            results: {...this._stats.results.getValue()},
+            comparison: {...this._stats.comparison.getValue()},
+            sos: this._stats.sos.getValue(),
+            ssos: this._stats.ssos.getValue(),
+        }
+    }
 }

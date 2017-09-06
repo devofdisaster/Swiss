@@ -34,4 +34,8 @@ export default class Round {
     hasPlayerMatched(player) {
         return this._matches.some((match) => match.hasPlayer(player))
     }
+
+    addSimpleStatsToPlayerScores() {
+        this._matches.filter((match) => match.hasResult()).forEach((match) => match.addSimpleStatsToPlayerScores())
+    }
 }
