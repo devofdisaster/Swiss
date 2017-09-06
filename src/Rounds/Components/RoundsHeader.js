@@ -4,12 +4,14 @@ import { connect } from 'react-redux'
 import ScreenHeader from '../../Shared/Components/ScreenHeader'
 import OpenDrawer from '../../Shared/ActionCreators/OpenDrawer'
 import GenerateNewRound from '../ActionCreators/GenerateNewRound'
+import DeleteLastRound from '../ActionCreators/DeleteLastRound'
+import AttemptDeleteLastRound from '../ActionCreators/AttemptDeleteLastRound'
 
 const mapStateToProps = (state) => ({
     count: state.rounds.length
 })
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
     onNavIconPressed: () => dispatch(OpenDrawer()),
     menu: {
         items: [
@@ -17,7 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
                 name: 'GenerateNewRound',
                 image: require('material-design-icons/content/drawable-hdpi/ic_add_circle_outline_black_36dp.png'),
                 onPress: () => dispatch(GenerateNewRound()),
-                onLongPress: () => dispatch(GenerateNewRound())//ToastAndroid.show('Generate new round', ToastAndroid.SHORT)
+                onLongPress: () => ToastAndroid.show('Generate new round', ToastAndroid.SHORT)
             },
             {
                 name: 'CustomizeNewRound',
@@ -28,7 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
             {
                 name: 'DeleteLastRound',
                 image: require('material-design-icons/content/drawable-hdpi/ic_backspace_black_36dp.png'),
-                onPress: () => {},
+                onPress: () => dispatch(AttemptDeleteLastRound()),
                 onLongPress: () => ToastAndroid.show('Delete last round', ToastAndroid.SHORT)
             }
         ]

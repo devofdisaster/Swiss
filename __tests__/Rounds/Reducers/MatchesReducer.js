@@ -1,6 +1,7 @@
 import MatchesReducer from '../../../src/Rounds/Reducers/MatchesReducer'
 import ChangeMatchResult from '../../../src/Rounds/ActionCreators/ChangeMatchResult'
 import AddNewRound from '../../../src/Rounds/ActionCreators/AddNewRound'
+import DeleteLastRound from '../../../src/Rounds/ActionCreators/DeleteLastRound'
 
 jest.mock('../../../src/Shared/InitialState');
 
@@ -24,5 +25,11 @@ describe('MatchesReducer', () => {
         }
 
         expect(MatchesReducer(state, AddNewRound({ matches: expectedState}))).toEqual(expectedState)
+    })
+
+    it('should remove matches present in the removed round on Rounds/DeleteLast', () => {
+        const expectedState = {}
+
+        expect(MatchesReducer(state, DeleteLastRound({ matches: ['some-id-1']}))).toEqual(expectedState)
     })
 })

@@ -1,3 +1,3 @@
-import { Types } from '../../Shared/Actions'
+import {Types} from '../../Shared/Actions'
 
-export default () => ({ type: Types.ROUNDS_DELETE_LAST })
+export default (round) => ({ type: Types.ROUNDS_DELETE_LAST, round})
