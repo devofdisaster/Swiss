@@ -6,36 +6,19 @@ export default function (state = initialState.nav, roundState = initialState.rou
     const newNavState = MainScreen.router.getStateForAction(action, state) || state
     const roundsIndex = state.routes[0].routes.findIndex((route) => route.key === 'rounds')
     const routes = roundState.map((round, index) => ({ key: `Round-${index+1}`, routeName: `Round-${index+1}` }))
-    const newState = {
-        ...newNavState,
-        routes: [
-            {
-                ...newNavState.routes[0],
-                routes: [
-                    ...newNavState.routes[0].routes.slice(0, roundsIndex),
-                    {
-                        ...newNavState.routes[0].routes[roundsIndex],
-                        routes: [
-                            {
-                                ...newNavState.routes[0].routes[roundsIndex].routes[0],
-                                routes,
-                                index: newNavState.routes[0].routes[roundsIndex].routes[0].index || 0
-                            }
-                        ]
-                    },
-                    ...newNavState.routes[0].routes.slice(roundsIndex + 1)
-                ]
-            },
-            ...newNavState.routes.slice(1)
-        ]
+
+    if (undefined === newNavState.routes[0].routes[roundsIndex].routes[0].index) {
+        newNavState.routes[0].routes[roundsIndex].routes[0].index = 0
     }
 
+    newNavState.routes[0].routes[roundsIndex].routes[0].routes = routes
+
     if (action.type === NavigationActions.NAVIGATE && !action.routeName.indexOf('Round-')) {
-        newState.routes[0].routes[roundsIndex].routes[0].index = parseInt(
+        newNavState.routes[0].routes[roundsIndex].routes[0].index = parseInt(
             action.routeName.replace('Round-', ''),
             10
         ) - 1
     }
 
-    return newState
+    return newNavState
 }
