@@ -185,11 +185,15 @@ export default class Tournament {
         this._players.forEach((player) => {
             const opponents = player.getOpponents()
             const sumOfOpsAvg = opponents.reduce(
-                (sum, opp) => sum + (opp.getStatistic('points').getValue() / opp.getOpponents().length),
+                (sum, opp) => {
+                    const ops = opp.getOpponents()
+
+                    return sum + (ops.length ? (opp.getStatistic('points').getValue() / ops.length) : 0)
+                },
                 0
             )
 
-            player.addSoS(sumOfOpsAvg / opponents.length)
+            player.addSoS(opponents.length ? sumOfOpsAvg / opponents.length : 0)
         })
     }
 
@@ -201,7 +205,7 @@ export default class Tournament {
                 0
             )
 
-            player.addSSoS(sumOfOpsSoS / opponents.length)
+            player.addSSoS(opponents.length ? sumOfOpsSoS / opponents.length : 0)
         })
     }
 
