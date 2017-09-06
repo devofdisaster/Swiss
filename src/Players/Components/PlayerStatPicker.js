@@ -14,12 +14,12 @@ export default function PlayerStatPicker(props) {
             onValueChange={props.onChange}
             style={{ minWidth: 100 }}
         >
-            <Picker.Item label={Points.renderName()} value="points"/>
-            <Picker.Item label={Results.renderName()} value="results"/>
-            <Picker.Item label={Games.renderName()} value="games"/>
-            <Picker.Item label={SoS.renderName()} value="sos"/>
-            <Picker.Item label={SSoS.renderName()} value="ssos"/>
-            <Picker.Item label={Comparison.renderName()} value="comparison"/>
+            <Picker.Item label={Points.renderName()} value="points" key="points"/>
+            <Picker.Item label={Results.renderName()} value="results" key="results"/>
+            <Picker.Item label={Games.renderName()} value="games" key="games"/>
+            <Picker.Item label={SoS.renderName()} value="sos" key="sos"/>
+            <Picker.Item label={SSoS.renderName()} value="ssos" key="ssos"/>
+            <Picker.Item label={Comparison.renderName()} value="comparison" key="results"/>
         </Picker>
     )
 }

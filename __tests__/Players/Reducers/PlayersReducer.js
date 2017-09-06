@@ -4,20 +4,20 @@ import SaveExistingPlayer   from '../../../src/Players/ActionsCreators/SaveExist
 import DisablePlayer from '../../../src/Players/ActionsCreators/DisablePlayer'
 import EnablePlayer from '../../../src/Players/ActionsCreators/EnablePlayer'
 import DeletePlayer from '../../../src/Players/ActionsCreators/DeletePlayer'
+import UpdateScores from '../../../src/Players/ActionsCreators/UpdateScores'
 
 jest.mock('../../../src/Shared/InitialState');
 
 describe('PlayersReducer', () => {
     const state = {
-        'player-one': { id: 'player-one', nickname: 'Jeronimo', score: 37, order: 0, enabled: true },
-        'player-two': { id: 'player-two', nickname: 'Martin', score: 56, order: 1, enabled: false },
+        'player-one': { id: 'player-one', nickname: 'Jeronimo', order: 0, enabled: true },
+        'player-two': { id: 'player-two', nickname: 'Martin', order: 1, enabled: false },
     }
 
     it('should add a new player on Players/SaveNew', () => {
         const newPlayer = {
             id: 'player-five-hundred',
             nickname: 'xXxLegolas9273xXx',
-            score: 9001,
             order: 2,
             enabled: true
         }
@@ -40,8 +40,8 @@ describe('PlayersReducer', () => {
     it('should update an existing player on Players/SaveExisting', () => {
         const existingPlayer = { id: 'player-one', nickname: 'Bob' }
         const expectedState = {
-            'player-one': { id: 'player-one', nickname: 'Bob', score: 37, order: 0, enabled: true },
-            'player-two': { id: 'player-two', nickname: 'Martin', score: 56, order: 1, enabled: false },
+            'player-one': { id: 'player-one', nickname: 'Bob', order: 0, enabled: true },
+            'player-two': { id: 'player-two', nickname: 'Martin', order: 1, enabled: false },
         }
 
         expect(PlayersReducer(state, SaveExistingPlayer(existingPlayer))).toEqual(expectedState)
@@ -49,8 +49,8 @@ describe('PlayersReducer', () => {
 
     it('should disable a player on Players/Disable', () => {
         const expectedState = {
-            'player-one': { id: 'player-one', nickname: 'Jeronimo', score: 37, order: 0, enabled: false },
-            'player-two': { id: 'player-two', nickname: 'Martin', score: 56, order: 1, enabled: false },
+            'player-one': { id: 'player-one', nickname: 'Jeronimo', order: 0, enabled: false },
+            'player-two': { id: 'player-two', nickname: 'Martin', order: 1, enabled: false },
         }
 
         expect(PlayersReducer(state, DisablePlayer('player-one'))).toEqual(expectedState)
@@ -58,8 +58,8 @@ describe('PlayersReducer', () => {
 
     it('should enable a player on Players/Enable', () => {
         const expectedState = {
-            'player-one': { id: 'player-one', nickname: 'Jeronimo', score: 37, order: 0, enabled: true },
-            'player-two': { id: 'player-two', nickname: 'Martin', score: 56, order: 1, enabled: true },
+            'player-one': { id: 'player-one', nickname: 'Jeronimo', order: 0, enabled: true },
+            'player-two': { id: 'player-two', nickname: 'Martin', order: 1, enabled: true },
         }
 
         expect(PlayersReducer(state, EnablePlayer('player-two'))).toEqual(expectedState)
@@ -67,16 +67,29 @@ describe('PlayersReducer', () => {
 
     it('should delete given player and update other players order on Players/Delete', () => {
         const state = {
-            'player-one': { id: 'player-one', nickname: 'Jeronimo', score: 37, order: 0, enabled: true },
-            'player-two': { id: 'player-two', nickname: 'Martin', score: 56, order: 1, enabled: false },
-            'player-three': { id: 'player-three', nickname: 'Brajan', score: 56, order: 2, enabled: false },
+            'player-one': { id: 'player-one', nickname: 'Jeronimo', order: 0, enabled: true },
+            'player-two': { id: 'player-two', nickname: 'Martin', order: 1, enabled: false },
+            'player-three': { id: 'player-three', nickname: 'Brajan', order: 2, enabled: false },
         }
         const expectedState = {
-            'player-two': { id: 'player-two', nickname: 'Martin', score: 56, order: 0, enabled: false },
-            'player-three': { id: 'player-three', nickname: 'Brajan', score: 56, order: 1, enabled: false },
+            'player-two': { id: 'player-two', nickname: 'Martin', order: 0, enabled: false },
+            'player-three': { id: 'player-three', nickname: 'Brajan', order: 1, enabled: false },
         }
 
         expect(PlayersReducer(state, DeletePlayer('player-one'))).toEqual(expectedState)
+    })
+
+    it('should update player scores on Players/UpdateScores', () => {
+        const expectedState = {
+            'player-one': { id: 'player-one', nickname: 'Jeronimo', points: 77, order: 0, enabled: true },
+            'player-two': { id: 'player-two', nickname: 'Martin', points: 77, order: 1, enabled: false },
+        }
+        const freshScores = {
+            'player-one': { points: 77 },
+            'player-two': { points: 77 }
+        }
+
+        expect(PlayersReducer(state, UpdateScores(freshScores))).toEqual(expectedState)
     })
 })
 

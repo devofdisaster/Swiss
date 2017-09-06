@@ -5,6 +5,7 @@ import RefreshPlayerList from './RefreshPlayerList'
 
 export default function CreateNewPlayer(player) {
     player.id = uuid()
+    player.enabled = true
 
     return (dispatch) => {
         dispatch(SaveNewPlayer(player))

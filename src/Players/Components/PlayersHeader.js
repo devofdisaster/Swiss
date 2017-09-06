@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { NavigationActions } from 'react-navigation'
 import ScreenHeader from '../../Shared/Components/ScreenHeader'
 import PlayerStatPicker from './PlayerStatPicker'
 import ChangeDisplayedStat from '../ActionsCreators/ChangeDisplayedStat'
@@ -26,7 +25,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     onNavIconPressed: () => dispatch(OpenDrawer()),
-    onStatPicked: (stat) => { dispatch(ChangeDisplayedStat(stat)) },
+    onStatPicked: (stat) => dispatch(ChangeDisplayedStat(stat)),
     menu: buildMenu(dispatch)
 })
 

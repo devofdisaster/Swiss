@@ -1,5 +1,6 @@
 import AttemptFinishRound from '../../../src/Rounds/ActionCreators/AttemptFinishRound'
-import { Types } from '../../../src/Shared/Actions'
+import RecalculateScores from '../../../src/Players/ActionsCreators/RecalculateScores'
+import FinishRound from '../../../src/Rounds/ActionCreators/FinishRound'
 
 describe('AttemptFinishRound', () => {
     it('should dispatch an action to finish given round if all matches have results', () => {
@@ -12,11 +13,12 @@ describe('AttemptFinishRound', () => {
                 'some-match-2': { result: '2-2' }
             }
         })
-        const expectedActions = [{ type: Types.ROUNDS_FINISH, round: 0 }]
+        const expectedActions = [FinishRound(0), RecalculateScores()]
 
         AttemptFinishRound(0)(dispatch, getState)
 
-        expect(actualActions).toEqual(expectedActions)
+        expect(actualActions[0]).toEqual(expectedActions[0])
+        expect(actualActions[1].name).toEqual(expectedActions[1].name)
     })
 
     it('should not dispatch any actions if some matches dont have results', () => {

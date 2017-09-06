@@ -8,5 +8,9 @@ export default class Points extends Statistic {
     constructor (value) {
         super('points', value)
     }
+
+    add(points) {
+        this._value += points
+    }
 }
 

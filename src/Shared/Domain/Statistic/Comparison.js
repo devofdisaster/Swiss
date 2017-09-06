@@ -32,4 +32,12 @@ export default class Comparison extends Statistic {
     toString () {
         return `${this._value.plus || 0}/${this._value.minus || 0}`
     }
+
+    addPositive(value) {
+        this._value.plus += value
+    }
+
+    addNegative(value) {
+        this._value.minus += value
+    }
 }

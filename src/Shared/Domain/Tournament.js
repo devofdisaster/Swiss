@@ -169,4 +169,47 @@ export default class Tournament {
 
         return matches
     }
+
+    recalculateScores() {
+        this._players.forEach((player) => player.resetStats())
+        this.recalculateSimpleStats()
+        this.recalculateSoS()
+        this.recalculateSSoS()
+    }
+
+    recalculateSimpleStats() {
+        this._rounds.forEach((round) => round.addSimpleStatsToPlayerScores())
+    }
+
+    recalculateSoS() {
+        this._players.forEach((player) => {
+            const opponents = player.getOpponents()
+            const sumOfOpsAvg = opponents.reduce(
+                (sum, opp) => sum + (opp.getStatistic('points').getValue() / opp.getOpponents().length),
+                0
+            )
+
+            player.addSoS(sumOfOpsAvg / opponents.length)
+        })
+    }
+
+    recalculateSSoS() {
+        this._players.forEach((player) => {
+            const opponents = player.getOpponents()
+            const sumOfOpsSoS = opponents.reduce(
+                (sum, opp) => sum + opp.getStatistic('sos').getValue(),
+                0
+            )
+
+            player.addSSoS(sumOfOpsSoS / opponents.length)
+        })
+    }
+
+    getPlayerScoreState() {
+        const scores = {}
+
+        this._players.forEach((player) => scores[player.getId()] = player.getPlainStats())
+
+        return scores
+    }
 }

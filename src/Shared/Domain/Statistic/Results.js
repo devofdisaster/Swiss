@@ -4,6 +4,7 @@ export default class Results extends Statistic {
     static PLAYER_1_WIN = '5-0'
     static PLAYER_2_WIN = '0-5'
     static DRAW         = '2-2'
+    static BYE          = '5-0'
 
     static renderName() {
         return super.renderName('results')
@@ -39,5 +40,17 @@ export default class Results extends Statistic {
 
     toString () {
         return [this._value.wins || 0, this._value.draws || 0, this._value.losses || 0].join('-')
+    }
+
+    addWins(value) {
+        this._value.wins += value
+    }
+
+    addDraws(value) {
+        this._value.draws += value
+    }
+
+    addLosses(value) {
+        this._value.losses += value
     }
 }

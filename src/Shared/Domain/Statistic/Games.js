@@ -8,5 +8,9 @@ export default class Games extends Statistic {
     constructor (value) {
         super('games', value)
     }
+
+    increment() {
+        this._value++
+    }
 }
 

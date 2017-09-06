@@ -1,5 +1,6 @@
 import {Alert} from 'react-native'
 import FinishRound from './FinishRound'
+import RecalculateScores from '../../Players/ActionsCreators/RecalculateScores'
 
 export default (index) => (dispatch, getState) => {
     const state = getState()
@@ -17,6 +18,7 @@ export default (index) => (dispatch, getState) => {
     }
 
     dispatch(FinishRound(index))
+    dispatch(RecalculateScores())
 
     return true
 }
