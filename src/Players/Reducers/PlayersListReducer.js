@@ -33,6 +33,8 @@ export default function (listState = InitialState.playersList, playersState = In
                 players: sortPlayers(playersData, sortBy, order, visibleStat),
                 sortBy
             }
+        case Types.TOURNAMENT_START_NEW:
+            return InitialState.playersList
         default:
             return listState
     }

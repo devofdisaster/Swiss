@@ -23,6 +23,8 @@ export default function RoundsReducer(state = InitialState.rounds, action) {
             return [
                 ...state.slice(0, action.round.index)
             ]
+        case Types.TOURNAMENT_START_NEW:
+            return InitialState.rounds
         default:
             return state
     }

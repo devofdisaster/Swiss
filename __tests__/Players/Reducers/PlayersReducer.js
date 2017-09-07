@@ -1,11 +1,12 @@
 import PlayersReducer       from '../../../src/Players/Reducers/PlayersReducer'
-import SaveNewPlayer        from '../../../src/Players/ActionsCreators/SaveNewPlayer'
-import SaveExistingPlayer   from '../../../src/Players/ActionsCreators/SaveExistingPlayer'
-import DisablePlayer from '../../../src/Players/ActionsCreators/DisablePlayer'
-import EnablePlayer from '../../../src/Players/ActionsCreators/EnablePlayer'
-import DeletePlayer from '../../../src/Players/ActionsCreators/DeletePlayer'
-import UpdateScores from '../../../src/Players/ActionsCreators/UpdateScores'
+import SaveNewPlayer        from '../../../src/Players/ActionCreators/SaveNewPlayer'
+import SaveExistingPlayer   from '../../../src/Players/ActionCreators/SaveExistingPlayer'
+import DisablePlayer from '../../../src/Players/ActionCreators/DisablePlayer'
+import EnablePlayer from '../../../src/Players/ActionCreators/EnablePlayer'
+import DeletePlayer from '../../../src/Players/ActionCreators/DeletePlayer'
+import UpdateScores from '../../../src/Players/ActionCreators/UpdateScores'
 import DeleteLastRound from '../../../src/Rounds/ActionCreators/DeleteLastRound'
+import {Types} from '../../../src/Shared/Actions'
 
 jest.mock('../../../src/Shared/InitialState');
 
@@ -108,6 +109,10 @@ describe('PlayersReducer', () => {
         }
 
         expect(PlayersReducer(state, DeleteLastRound({ index: 1, matches: [3,4] }))).toEqual(expectedState)
+    })
+
+    it('should remove all players on Tournament/StartNew', () => {
+        expect(PlayersReducer(state, { type: Types.TOURNAMENT_START_NEW })).toEqual({})
     })
 })
 

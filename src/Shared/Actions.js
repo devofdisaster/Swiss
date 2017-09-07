@@ -16,6 +16,7 @@ const ROUNDS_GENERATE_NEW           = 'Rounds/GenerateNew'
 const ROUNDS_CUSTOMIZE_NEW          = 'Rounds/CustomizeNew'
 const ROUNDS_DELETE_LAST            = 'Rounds/DeleteLast'
 const ROUNDS_CHANGE_MATCH_RESULT    = 'Rounds/ChangeMatchResult'
+const TOURNAMENT_START_NEW          = 'Tournament/StartNew'
 
 export const create = (type) => (payload = {}) => ({
     type,
@@ -40,7 +41,8 @@ export const Types = {
     ROUNDS_CUSTOMIZE_NEW,
     ROUNDS_DELETE_LAST,
     ROUNDS_GENERATE_NEW,
-    ROUNDS_CHANGE_MATCH_RESULT
+    ROUNDS_CHANGE_MATCH_RESULT,
+    TOURNAMENT_START_NEW
 }
 
 export default { create, Types }

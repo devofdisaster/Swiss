@@ -1,6 +1,7 @@
 import { Types } from '../../Shared/Actions'
+import InitialState from '../../Shared/InitialState'
 
-export default function MatchesReducer(state, action) {
+export default function MatchesReducer(state = InitialState.matches, action) {
     switch (action.type) {
         case Types.ROUNDS_CHANGE_MATCH_RESULT:
             return {
@@ -17,6 +18,8 @@ export default function MatchesReducer(state, action) {
             action.round.matches.forEach((id) => delete newState[id])
 
             return newState
+        case Types.TOURNAMENT_START_NEW:
+            return InitialState.matches
         default:
             return state
     }

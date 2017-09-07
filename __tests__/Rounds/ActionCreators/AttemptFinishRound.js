@@ -1,5 +1,5 @@
 import AttemptFinishRound from '../../../src/Rounds/ActionCreators/AttemptFinishRound'
-import RecalculateScores from '../../../src/Players/ActionsCreators/RecalculateScores'
+import RecalculateScores from '../../../src/Players/ActionCreators/RecalculateScores'
 import FinishRound from '../../../src/Rounds/ActionCreators/FinishRound'
 
 describe('AttemptFinishRound', () => {
