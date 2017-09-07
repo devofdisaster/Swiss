@@ -1,4 +1,4 @@
-import ChangeDisplayedStat from '../../../src/Players/ActionsCreators/ChangeDisplayedStat'
+import ChangeDisplayedStat from '../../../src/Players/ActionCreators/ChangeDisplayedStat'
 import { Types } from '../../../src/Shared/Actions'
 
 describe('ChangeDisplayedStat', () => {

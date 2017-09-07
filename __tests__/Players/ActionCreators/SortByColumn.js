@@ -1,4 +1,4 @@
-import SortByColumn from '../../../src/Players/ActionsCreators/SortByColumn'
+import SortByColumn from '../../../src/Players/ActionCreators/SortByColumn'
 import { Types } from '../../../src/Shared/Actions'
 
 describe('SortByColumn', () => {

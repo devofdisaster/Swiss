@@ -1,4 +1,4 @@
-import DeletePlayer from '../../../src/Players/ActionsCreators/DeletePlayer'
+import DeletePlayer from '../../../src/Players/ActionCreators/DeletePlayer'
 import { Types } from '../../../src/Shared/Actions'
 
 describe('DeletePlayer', () => {

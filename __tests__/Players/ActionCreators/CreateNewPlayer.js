@@ -1,4 +1,4 @@
-import CreateNewPlayer from '../../../src/Players/ActionsCreators/CreateNewPlayer'
+import CreateNewPlayer from '../../../src/Players/ActionCreators/CreateNewPlayer'
 import { Types } from '../../../src/Shared/Actions'
 import { NavigationActions } from 'react-navigation'
 

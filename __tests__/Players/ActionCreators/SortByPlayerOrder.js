@@ -1,4 +1,4 @@
-import SortByPlayerOrder from '../../../src/Players/ActionsCreators/SortByPlayerOrder'
+import SortByPlayerOrder from '../../../src/Players/ActionCreators/SortByPlayerOrder'
 import { Types } from '../../../src/Shared/Actions'
 
 describe('SortByPlayerOrder', () => {

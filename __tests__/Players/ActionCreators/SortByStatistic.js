@@ -1,4 +1,4 @@
-import SortByStatistic from '../../../src/Players/ActionsCreators/SortByStatistic'
+import SortByStatistic from '../../../src/Players/ActionCreators/SortByStatistic'
 import { Types } from '../../../src/Shared/Actions'
 
 describe('SortByStatistic', () => {

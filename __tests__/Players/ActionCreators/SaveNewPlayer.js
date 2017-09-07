@@ -1,4 +1,4 @@
-import SaveNewPlayer from '../../../src/Players/ActionsCreators/SaveNewPlayer'
+import SaveNewPlayer from '../../../src/Players/ActionCreators/SaveNewPlayer'
 import { Types } from '../../../src/Shared/Actions'
 
 describe('SaveNewPlayer', () => {
