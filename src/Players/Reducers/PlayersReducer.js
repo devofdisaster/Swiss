@@ -70,6 +70,8 @@ export default function (state = initialState.players, action) {
             })
 
             return newState
+        case Types.TOURNAMENT_START_NEW:
+            return initialState.players
         default:
             return state
     }

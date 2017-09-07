@@ -1,6 +1,12 @@
 export default {
     nav: {},
+    matches: {},
     players: {},
-    playersList: [],
-    rounds: []
+    rounds: [],
+    playersList: {
+        sortBy: 'order',
+        players: [],
+        order: 'asc',
+        visibleStat: 'points'
+    }
 }

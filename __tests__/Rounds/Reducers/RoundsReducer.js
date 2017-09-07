@@ -3,6 +3,7 @@ import FinishRound from '../../../src/Rounds/ActionCreators/FinishRound'
 import EditRound from '../../../src/Rounds/ActionCreators/EditRound'
 import AddNewRound from '../../../src/Rounds/ActionCreators/AddNewRound'
 import DeleteLastRound from '../../../src/Rounds/ActionCreators/DeleteLastRound'
+import {Types} from '../../../src/Shared/Actions'
 
 jest.mock('../../../src/Shared/InitialState');
 
@@ -46,5 +47,9 @@ describe('RoundsReducer', () => {
         ]
 
         expect(RoundsReducer(state, DeleteLastRound({ index: 1 }))).toEqual(expectedState)
+    })
+
+    it('should remove all rounds on Tournament/StartNew', () => {
+        expect(RoundsReducer(state, { type: Types.TOURNAMENT_START_NEW })).toEqual([])
     })
 })

@@ -2,6 +2,7 @@ import MatchesReducer from '../../../src/Rounds/Reducers/MatchesReducer'
 import ChangeMatchResult from '../../../src/Rounds/ActionCreators/ChangeMatchResult'
 import AddNewRound from '../../../src/Rounds/ActionCreators/AddNewRound'
 import DeleteLastRound from '../../../src/Rounds/ActionCreators/DeleteLastRound'
+import {Types} from '../../../src/Shared/Actions'
 
 jest.mock('../../../src/Shared/InitialState');
 
@@ -31,5 +32,9 @@ describe('MatchesReducer', () => {
         const expectedState = {}
 
         expect(MatchesReducer(state, DeleteLastRound({ matches: ['some-id-1']}))).toEqual(expectedState)
+    })
+
+    it('should remove all matches on Tournament/StartNew', () => {
+        expect(MatchesReducer(state, { type: Types.TOURNAMENT_START_NEW })).toEqual({})
     })
 })

@@ -3,8 +3,8 @@ import { View, TextInput, Alert } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import EditPlayerHeader from './EditPlayerHeader'
-import CreateNewPlayer from '../ActionsCreators/CreateNewPlayer'
-import UpdateExistingPlayer from '../ActionsCreators/UpdateExistingPlayer'
+import CreateNewPlayer from '../ActionCreators/CreateNewPlayer'
+import UpdateExistingPlayer from '../ActionCreators/UpdateExistingPlayer'
 
 class EditPlayerScreen extends React.Component {
     autofocusNickname() {
