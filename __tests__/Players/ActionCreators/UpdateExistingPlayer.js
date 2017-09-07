@@ -1,4 +1,4 @@
-import UpdateExistingPlayer from '../../../src/Players/ActionsCreators/UpdateExistingPlayer'
+import UpdateExistingPlayer from '../../../src/Players/ActionCreators/UpdateExistingPlayer'
 import { Types } from '../../../src/Shared/Actions'
 import { NavigationActions } from 'react-navigation'
 

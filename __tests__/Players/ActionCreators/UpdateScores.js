@@ -1,4 +1,4 @@
-import UpdateScores from '../../../src/Players/ActionsCreators/UpdateScores'
+import UpdateScores from '../../../src/Players/ActionCreators/UpdateScores'
 import { Types } from '../../../src/Shared/Actions'
 
 describe('UpdateScores', () => {

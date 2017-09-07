@@ -1,4 +1,4 @@
-import EditExistingPlayer from '../../../src/Players/ActionsCreators/EditExistingPlayer'
+import EditExistingPlayer from '../../../src/Players/ActionCreators/EditExistingPlayer'
 import { NavigationActions } from 'react-navigation'
 
 describe('EditExistingPlayer', () => {

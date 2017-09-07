@@ -1,4 +1,4 @@
-import RefreshPlayerList from '../../../src/Players/ActionsCreators/RefreshPlayerList'
+import RefreshPlayerList from '../../../src/Players/ActionCreators/RefreshPlayerList'
 import { Types } from '../../../src/Shared/Actions'
 
 describe('RefreshPlayerList', () => {

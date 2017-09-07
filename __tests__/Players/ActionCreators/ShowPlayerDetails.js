@@ -1,4 +1,4 @@
-import ShowPlayerDetails from '../../../src/Players/ActionsCreators/ShowPlayerDetails'
+import ShowPlayerDetails from '../../../src/Players/ActionCreators/ShowPlayerDetails'
 import { NavigationActions } from 'react-navigation'
 
 describe('ShowPlayerDetails', () => {

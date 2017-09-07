@@ -1,4 +1,4 @@
-import AttemptDisablePlayer from '../../../src/Players/ActionsCreators/AttemptDisablePlayer'
+import AttemptDisablePlayer from '../../../src/Players/ActionCreators/AttemptDisablePlayer'
 import { Types } from '../../../src/Shared/Actions'
 
 describe('AttemptDisablePlayer', () => {

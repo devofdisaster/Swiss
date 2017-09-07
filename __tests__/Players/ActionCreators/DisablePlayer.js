@@ -1,4 +1,4 @@
-import DisablePlayer from '../../../src/Players/ActionsCreators/DisablePlayer'
+import DisablePlayer from '../../../src/Players/ActionCreators/DisablePlayer'
 import { Types } from '../../../src/Shared/Actions'
 
 describe('DisablePlayer', () => {
