@@ -4,6 +4,7 @@ import EditRound from '../../../src/Rounds/ActionCreators/EditRound'
 import AddNewRound from '../../../src/Rounds/ActionCreators/AddNewRound'
 import DeleteLastRound from '../../../src/Rounds/ActionCreators/DeleteLastRound'
 import {Types} from '../../../src/Shared/Actions'
+import LoadTournamentData from '../../../src/Tournament/ActionCreators/LoadTournamentData'
 
 jest.mock('../../../src/Shared/InitialState');
 
@@ -51,5 +52,9 @@ describe('RoundsReducer', () => {
 
     it('should remove all rounds on Tournament/StartNew', () => {
         expect(RoundsReducer(state, { type: Types.TOURNAMENT_START_NEW })).toEqual([])
+    })
+
+    it('should replace all rounds with new data Tournament/LoadData', () => {
+        expect(RoundsReducer(state, LoadTournamentData({ rounds: [] }))).toEqual([])
     })
 })

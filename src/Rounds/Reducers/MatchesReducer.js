@@ -20,6 +20,8 @@ export default function MatchesReducer(state = InitialState.matches, action) {
             return newState
         case Types.TOURNAMENT_START_NEW:
             return InitialState.matches
+        case Types.TOURNAMENT_LOAD_DATA:
+            return action.data.matches
         default:
             return state
     }

@@ -39,6 +39,11 @@ export default (state = InitialState.tournament, action) => {
                 availableToLoad: action.data,
                 loading: false
             }
+        case Types.TOURNAMENT_LOAD_DATA:
+            return {
+                ...state,
+                name: action.data.tournament.name
+            }
         default:
             return state
     }

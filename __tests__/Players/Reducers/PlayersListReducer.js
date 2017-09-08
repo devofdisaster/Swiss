@@ -3,6 +3,7 @@ import RefreshPlayerList    from '../../../src/Players/ActionCreators/RefreshPla
 import ChangeDisplayedStat  from '../../../src/Players/ActionCreators/ChangeDisplayedStat'
 import DeletePlayer from '../../../src/Players/ActionCreators/DeletePlayer'
 import {Types} from '../../../src/Shared/Actions'
+import LoadTournamentData from '../../../src/Tournament/ActionCreators/LoadTournamentData'
 
 jest.mock('../../../src/Shared/InitialState');
 
@@ -45,5 +46,15 @@ describe('PlayersListReducer', () => {
         const expectedState = { players: [], visibleStat: 'points', order: 'asc', sortBy: 'order'}
 
         expect(PlayersListReducer(listState, playersState, { type: Types.TOURNAMENT_START_NEW })).toEqual(expectedState)
+    })
+
+    it('should load new data and sort by points on Tournament/LoadData', () => {
+        const listState = { players: ['player-five-hundred'], visibleStat: 'points', order: 'asc', sortBy: 'order' }
+        const playersState = {
+            ['player-five-hundred']: { id: 'player-five-hundred', nickname: 'xXxLegolas9273xXx', score: 9001 }
+        }
+        const expectedState = { players: [], visibleStat: 'points', order: 'desc', sortBy: 'stat'}
+
+        expect(PlayersListReducer(listState, playersState, LoadTournamentData({ players: {}}))).toEqual(expectedState)
     })
 })

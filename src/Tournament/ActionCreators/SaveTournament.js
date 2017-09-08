@@ -14,12 +14,11 @@ export default (name) => (dispatch, getState) => {
         matches:        state.matches,
         players:        state.players,
         rounds:         state.rounds,
-        playersList:    { players: Object.keys(state.players) },
         tournament:     { name }
     }
 
     dispatch(ShowModalSpinner())
-    AsyncStorage.setItem(name, stateToSave, (err) => {throw err })
+    AsyncStorage.setItem(name, JSON.stringify(stateToSave), handleError)
         .then(() => {
             dispatch(HideSaveModal())
             ToastAndroid.show(`Saved as ${name}`, ToastAndroid.SHORT)
@@ -28,4 +27,10 @@ export default (name) => (dispatch, getState) => {
             Alert.alert('Error!', `Couldn't save data for tournament ${name}`)
             console.error(e)
         })
+}
+
+function handleError(err) {
+    if (err) {
+        throw err
+    }
 }
