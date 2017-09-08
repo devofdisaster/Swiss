@@ -48,19 +48,7 @@ function getStateFromTournament(tournament) {
             enabled: player.isEnabled(),
             order: player.getOriginalOrder(),
             matches: player.getMatchIds(),
-            points: player.renderStatistic('points'),
-            comparison: {
-                plus: player.getStatistic('comparison').getPositive(),
-                minus: player.getStatistic('comparison').getNegative()
-            },
-            games: player.renderStatistic('games'),
-            results: {
-                wins: player.getStatistic('results').getWins(),
-                draws: player.getStatistic('results').getDraws(),
-                losses: player.getStatistic('results').getLosses(),
-            },
-            sos: player.renderStatistic('sos'),
-            ssos: player.renderStatistic('ssos')
+            ...player.getPlainStats()
         }
     })
 
