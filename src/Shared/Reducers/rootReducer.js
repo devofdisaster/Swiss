@@ -12,5 +12,5 @@ export default rootReducer = (state = InitialState, action) => ({
     players: PlayersReducer(state.players, action),
     playersList: PlayersListReducer(state.playersList, state.players, action),
     rounds: RoundsReducer(state.rounds, action),
-    tournament: TournamentReducer(state.tournament)
+    tournament: TournamentReducer(state.tournament, action)
 })

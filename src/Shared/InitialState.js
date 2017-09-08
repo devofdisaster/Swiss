@@ -48,6 +48,7 @@ const initialState = {
     },
     tournament: {
         name: `Tournament ${new Date()}`,
+        availableToLoad: [],
         loading: false,
         loadModal: false,
         saveModal: false

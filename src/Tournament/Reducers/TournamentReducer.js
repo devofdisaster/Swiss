@@ -11,23 +11,33 @@ export default (state = InitialState.tournament, action) => {
         case Types.TOURNAMENT_SHOW_LOAD_MODAL:
             return {
                 ...state,
-                loadModal: true
+                availableToLoad: [],
+                loadModal: true,
+                loading: true
             }
         case Types.TOURNAMENT_HIDE_SAVE_MODAL:
             return {
                 ...state,
-                saveModal: false
+                saveModal: false,
+                loading: false
             }
         case Types.TOURNAMENT_HIDE_LOAD_MODAL:
             return {
                 ...state,
-                loadModal: false
+                loadModal: false,
+                loading: false
             }
         case Types.TOURNAMENT_HIDE_MODALS:
             return {
                 ...state,
                 loadModal: false,
                 saveModal: false
+            }
+        case Types.TOURNAMENT_SHOW_SAVED_ITEMS:
+            return {
+                ...state,
+                availableToLoad: action.data,
+                loading: false
             }
         default:
             return state

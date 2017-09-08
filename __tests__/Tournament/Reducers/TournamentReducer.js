@@ -1,4 +1,3 @@
-import InitialState from '../../../src/Shared/InitialState'
 import TournamentReducer from '../../../src/Tournament/Reducers/TournamentReducer'
 import ShowLoadModal from '../../../src/Tournament/ActionCreators/ShowLoadModal'
 import ShowSaveModal from '../../../src/Tournament/ActionCreators/ShowSaveModal'
@@ -11,6 +10,7 @@ jest.mock('../../../src/Shared/InitialState');
 describe('TournamentReducer', () => {
     const state = {
         name: 'Test Tournament',
+        availableToLoad: [],
         loading: false,
         saveModal: false,
         loadModal: false
@@ -20,7 +20,8 @@ describe('TournamentReducer', () => {
         expect(TournamentReducer(state, ShowLoadModal())).toEqual(
             {
                 name: 'Test Tournament',
-                loading: false,
+                availableToLoad: [],
+                loading: true,
                 saveModal: false,
                 loadModal: true
             }
@@ -31,6 +32,7 @@ describe('TournamentReducer', () => {
         expect(TournamentReducer(state, ShowSaveModal())).toEqual(
             {
                 name: 'Test Tournament',
+                availableToLoad: [],
                 loading: false,
                 saveModal: true,
                 loadModal: false
@@ -42,6 +44,7 @@ describe('TournamentReducer', () => {
         expect(TournamentReducer({...state, loadModal: true}, HideLoadModal())).toEqual(
             {
                 name: 'Test Tournament',
+                availableToLoad: [],
                 loading: false,
                 saveModal: false,
                 loadModal: false
@@ -53,6 +56,7 @@ describe('TournamentReducer', () => {
         expect(TournamentReducer({...state, saveModal: true}, HideSaveModal())).toEqual(
             {
                 name: 'Test Tournament',
+                availableToLoad: [],
                 loading: false,
                 saveModal: false,
                 loadModal: false
@@ -64,6 +68,7 @@ describe('TournamentReducer', () => {
         expect(TournamentReducer({...state, saveModal: true}, HideTournamentModals())).toEqual(
             {
                 name: 'Test Tournament',
+                availableToLoad: [],
                 loading: false,
                 saveModal: false,
                 loadModal: false
@@ -73,6 +78,7 @@ describe('TournamentReducer', () => {
         expect(TournamentReducer({...state, loadModal: true}, HideTournamentModals())).toEqual(
             {
                 name: 'Test Tournament',
+                availableToLoad: [],
                 loading: false,
                 saveModal: false,
                 loadModal: false
