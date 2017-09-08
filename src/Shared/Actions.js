@@ -21,8 +21,9 @@ const TOURNAMENT_HIDE_LOAD_MODAL    = 'Tournament/HideLoadModal'
 const TOURNAMENT_HIDE_SAVE_MODAL    = 'Tournament/HideSaveModal'
 const TOURNAMENT_SHOW_LOAD_MODAL    = 'Tournament/ShowLoadModal'
 const TOURNAMENT_SHOW_SAVE_MODAL    = 'Tournament/ShowSaveModal'
+const TOURNAMENT_SHOW_SPINNER       = 'TOurnament/ShowSpinner'
 const TOURNAMENT_HIDE_MODALS        = 'Tournament/HideModals'
-
+const TOURNAMENT_SHOW_SAVED_ITEMS   = 'Tournament/ShowSavedItems'
 
 export const create = (type) => (payload = {}) => ({
     type,
@@ -53,7 +54,9 @@ export const Types = {
     TOURNAMENT_HIDE_SAVE_MODAL,
     TOURNAMENT_SHOW_LOAD_MODAL,
     TOURNAMENT_SHOW_SAVE_MODAL,
-    TOURNAMENT_HIDE_MODALS
+    TOURNAMENT_HIDE_MODALS,
+    TOURNAMENT_SHOW_SAVED_ITEMS,
+    TOURNAMENT_SHOW_SPINNER
 }
 
 export default { create, Types }

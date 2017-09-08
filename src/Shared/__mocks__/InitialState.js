@@ -11,6 +11,7 @@ export default {
     },
     tournament: {
         name: `Test Tournament`,
+        availableToLoad: [],
         loading: false,
         loadModal: false,
         saveModal: false
