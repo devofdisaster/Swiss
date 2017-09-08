@@ -17,6 +17,11 @@ const ROUNDS_CUSTOMIZE_NEW          = 'Rounds/CustomizeNew'
 const ROUNDS_DELETE_LAST            = 'Rounds/DeleteLast'
 const ROUNDS_CHANGE_MATCH_RESULT    = 'Rounds/ChangeMatchResult'
 const TOURNAMENT_START_NEW          = 'Tournament/StartNew'
+const TOURNAMENT_HIDE_LOAD_MODAL    = 'Tournament/HideLoadModal'
+const TOURNAMENT_HIDE_SAVE_MODAL    = 'Tournament/HideSaveModal'
+const TOURNAMENT_SHOW_LOAD_MODAL    = 'Tournament/ShowLoadModal'
+const TOURNAMENT_SHOW_SAVE_MODAL    = 'Tournament/ShowSaveModal'
+
 
 export const create = (type) => (payload = {}) => ({
     type,
@@ -42,7 +47,11 @@ export const Types = {
     ROUNDS_DELETE_LAST,
     ROUNDS_GENERATE_NEW,
     ROUNDS_CHANGE_MATCH_RESULT,
-    TOURNAMENT_START_NEW
+    TOURNAMENT_START_NEW,
+    TOURNAMENT_HIDE_LOAD_MODAL,
+    TOURNAMENT_HIDE_SAVE_MODAL,
+    TOURNAMENT_SHOW_LOAD_MODAL,
+    TOURNAMENT_SHOW_SAVE_MODAL
 }
 
 export default { create, Types }

@@ -1,6 +1,5 @@
 import { NavigationActions } from 'react-navigation'
 import MainScreen from '../Navigation/MainScreen'
-import InitialDevState from './InitialState.dev'
 
 const initialAction = NavigationActions.reset({
     index: 0,
@@ -46,7 +45,13 @@ const initialState = {
         players: [],
         order: 'asc',
         visibleStat: 'points'
+    },
+    tournament: {
+        name: `Tournament ${new Date()}`,
+        loading: false,
+        loadModal: false,
+        saveModal: false
     }
 }
 
-export default InitialDevState()
+export default initialState
