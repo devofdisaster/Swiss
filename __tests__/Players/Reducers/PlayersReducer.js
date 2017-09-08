@@ -7,6 +7,7 @@ import DeletePlayer from '../../../src/Players/ActionCreators/DeletePlayer'
 import UpdateScores from '../../../src/Players/ActionCreators/UpdateScores'
 import DeleteLastRound from '../../../src/Rounds/ActionCreators/DeleteLastRound'
 import {Types} from '../../../src/Shared/Actions'
+import LoadTournamentData from '../../../src/Tournament/ActionCreators/LoadTournamentData'
 
 jest.mock('../../../src/Shared/InitialState');
 
@@ -113,6 +114,10 @@ describe('PlayersReducer', () => {
 
     it('should remove all players on Tournament/StartNew', () => {
         expect(PlayersReducer(state, { type: Types.TOURNAMENT_START_NEW })).toEqual({})
+    })
+
+    it('should load new player data on Tournament/LoadData', () => {
+        expect(PlayersReducer(state, LoadTournamentData({ players: {} }))).toEqual({})
     })
 })
 

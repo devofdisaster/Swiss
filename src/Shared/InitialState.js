@@ -35,6 +35,7 @@ function fabricateStateForRoundTabNavigator() {
     }
 }
 
+const date = new Date()
 const initialState = {
     nav: fabricateStateForRoundTabNavigator(),
     matches: {},
@@ -47,7 +48,7 @@ const initialState = {
         visibleStat: 'points'
     },
     tournament: {
-        name: `Tournament ${new Date()}`,
+        name: `Tournament ${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`,
         availableToLoad: [],
         loading: false,
         loadModal: false,

@@ -1,8 +1,14 @@
 import React from 'react'
-import {View, StyleSheet, Text, Image, TouchableNativeFeedback} from 'react-native'
+import { View, StyleSheet, Text, Image, TouchableNativeFeedback } from 'react-native'
 import {connect} from 'react-redux'
-import { Types } from '../../Shared/Actions'
 import StartNewTournament from '../ActionCreators/StartNewTournament'
+import ShowSaveModal from '../ActionCreators/ShowSaveModal'
+import SaveModal from './SaveModal'
+import HideTournamentModals from '../ActionCreators/HideTournamentModals'
+import LoadModal from './LoadModal'
+import SaveTournament from '../ActionCreators/SaveTournament'
+import LoadTournament from '../ActionCreators/LoadTournament'
+import ShowLoadModalAndLoadData from '../ActionCreators/ShowLoadModalAndLoadData'
 
 const styles = StyleSheet.create({
     body: {
@@ -64,15 +70,40 @@ class TournamentMenuScreen extends React.Component {
                         <Text style={styles.text}>Load tournament</Text>
                     </View>
                 </TouchableNativeFeedback>
+                <SaveModal
+                    tournamentName={this.props.tournamentName}
+                    loading={this.props.isLoading}
+                    visible={this.props.saveModalVisible}
+                    onBackPress={this.props.onBackPress}
+                    onSaveModalSubmit={this.props.onSaveModalSubmit}
+                />
+                <LoadModal
+                    items={this.props.availableToLoad}
+                    loading={this.props.isLoading}
+                    visible={this.props.loadModalVisible}
+                    onBackPress={this.props.onBackPress}
+                    onLoadModalSubmit={this.props.onLoadModalSubmit}
+                />
             </View>
         )
     }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    onStartPress: () => dispatch(StartNewTournament()),
-    onSavePress: () => {},
-    onLoadPress: () => {}
+const mapStateToProps = ({ tournament }) => ({
+    availableToLoad:    tournament.availableToLoad.map((item, index) => ({ key: index, title: item })),
+    tournamentName:     tournament.name,
+    isLoading:          tournament.loading,
+    saveModalVisible:   tournament.saveModal,
+    loadModalVisible:   tournament.loadModal
 })
 
-export default connect(null, mapDispatchToProps)(TournamentMenuScreen)
+const mapDispatchToProps = (dispatch) => ({
+    onStartPress:       () => dispatch(StartNewTournament()),
+    onSavePress:        () => dispatch(ShowSaveModal()),
+    onLoadPress:        () => dispatch(ShowLoadModalAndLoadData()),
+    onBackPress:        () => dispatch(HideTournamentModals()),
+    onSaveModalSubmit:  (name) => dispatch(SaveTournament(name)),
+    onLoadModalSubmit:  (name) => dispatch(LoadTournament(name))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TournamentMenuScreen)

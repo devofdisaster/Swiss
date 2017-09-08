@@ -72,6 +72,8 @@ export default function (state = initialState.players, action) {
             return newState
         case Types.TOURNAMENT_START_NEW:
             return initialState.players
+        case Types.TOURNAMENT_LOAD_DATA:
+            return action.data.players
         default:
             return state
     }
