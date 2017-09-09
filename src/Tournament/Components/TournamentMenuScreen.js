@@ -9,6 +9,8 @@ import LoadModal from './LoadModal'
 import SaveTournament from '../ActionCreators/SaveTournament'
 import LoadTournament from '../ActionCreators/LoadTournament'
 import ShowLoadModalAndLoadData from '../ActionCreators/ShowLoadModalAndLoadData'
+import RemoveSavedItem from '../ActionCreators/DeleteSavedItem'
+import AttemptDeleteSavedItem from '../ActionCreators/AttemptDeleteSavedItem'
 
 const styles = StyleSheet.create({
     body: {
@@ -83,6 +85,7 @@ class TournamentMenuScreen extends React.Component {
                     visible={this.props.loadModalVisible}
                     onBackPress={this.props.onBackPress}
                     onLoadModalSubmit={this.props.onLoadModalSubmit}
+                    onItemLongPress={this.props.onItemLongPress}
                 />
             </View>
         )
@@ -103,7 +106,8 @@ const mapDispatchToProps = (dispatch) => ({
     onLoadPress:        () => dispatch(ShowLoadModalAndLoadData()),
     onBackPress:        () => dispatch(HideTournamentModals()),
     onSaveModalSubmit:  (name) => dispatch(SaveTournament(name)),
-    onLoadModalSubmit:  (name) => dispatch(LoadTournament(name))
+    onLoadModalSubmit:  (name) => dispatch(LoadTournament(name)),
+    onItemLongPress:    (name) => dispatch(AttemptDeleteSavedItem(name))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TournamentMenuScreen)
