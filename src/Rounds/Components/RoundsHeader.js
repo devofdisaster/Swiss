@@ -6,6 +6,7 @@ import OpenDrawer from '../../Shared/ActionCreators/OpenDrawer'
 import GenerateNewRound from '../ActionCreators/GenerateNewRound'
 import DeleteLastRound from '../ActionCreators/DeleteLastRound'
 import AttemptDeleteLastRound from '../ActionCreators/AttemptDeleteLastRound'
+import CustomizeNewRound from '../ActionCreators/CustomizeNewRound'
 
 const mapStateToProps = (state) => ({
     count: state.rounds.length
@@ -24,7 +25,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             {
                 name: 'CustomizeNewRound',
                 image: require('material-design-icons/editor/drawable-hdpi/ic_mode_edit_black_36dp.png'),
-                onPress: () => {},
+                onPress: () => dispatch(CustomizeNewRound()),
                 onLongPress: () => ToastAndroid.show('Customize new round', ToastAndroid.SHORT)
             },
             {

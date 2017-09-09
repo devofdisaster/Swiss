@@ -16,12 +16,13 @@ const ROUNDS_GENERATE_NEW           = 'Rounds/GenerateNew'
 const ROUNDS_CUSTOMIZE_NEW          = 'Rounds/CustomizeNew'
 const ROUNDS_DELETE_LAST            = 'Rounds/DeleteLast'
 const ROUNDS_CHANGE_MATCH_RESULT    = 'Rounds/ChangeMatchResult'
+const ROUNDS_UPDATE_CUSTOM_MATCHES  = 'Rounds/UpdateCustomMatches'
 const TOURNAMENT_START_NEW          = 'Tournament/StartNew'
 const TOURNAMENT_HIDE_LOAD_MODAL    = 'Tournament/HideLoadModal'
 const TOURNAMENT_HIDE_SAVE_MODAL    = 'Tournament/HideSaveModal'
 const TOURNAMENT_SHOW_LOAD_MODAL    = 'Tournament/ShowLoadModal'
 const TOURNAMENT_SHOW_SAVE_MODAL    = 'Tournament/ShowSaveModal'
-const TOURNAMENT_SHOW_SPINNER       = 'TOurnament/ShowSpinner'
+const TOURNAMENT_SHOW_SPINNER       = 'Tournament/ShowSpinner'
 const TOURNAMENT_HIDE_MODALS        = 'Tournament/HideModals'
 const TOURNAMENT_SHOW_SAVED_ITEMS   = 'Tournament/ShowSavedItems'
 const TOURNAMENT_LOAD_DATA          = 'Tournament/LoadData'
@@ -50,6 +51,7 @@ export const Types = {
     ROUNDS_DELETE_LAST,
     ROUNDS_GENERATE_NEW,
     ROUNDS_CHANGE_MATCH_RESULT,
+    ROUNDS_UPDATE_CUSTOM_MATCHES,
     TOURNAMENT_START_NEW,
     TOURNAMENT_HIDE_LOAD_MODAL,
     TOURNAMENT_HIDE_SAVE_MODAL,

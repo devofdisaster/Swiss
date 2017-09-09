@@ -1,19 +1,15 @@
 import React from 'react'
 import {DrawerItems, DrawerNavigator, NavigationActions} from 'react-navigation';
 import { BackHandler } from 'react-native'
-import TournamentTab from '../Tournament/TournamentTab'
-import StandingsTab from './StandingsTab';
-import SettingsTab from './SettingsTab'
-import PlayersTab from '../Players/PlayersTab'
-import RoundsTab from '../Rounds/RoundsTab'
-import RecalculateScores from '../Players/ActionCreators/RecalculateScores'
+import TournamentTab from '../../Tournament/TournamentTab'
+import PlayersTab from '../../Players/PlayersTab'
+import RoundsTab from '../../Rounds/RoundsTab'
+import RecalculateScores from '../../Players/ActionCreators/RecalculateScores'
 
 const routes = {
     tournament: { screen: TournamentTab,    name: 'tournament' },
     players:    { screen: PlayersTab,       name: 'players'   },
     rounds:     { screen: RoundsTab,        name: 'rounds'    },
-    standings:  { screen: StandingsTab,     name: 'standings' },
-    settings:   { screen: SettingsTab,      name: 'settings'  }
 }
 
 const config = {
