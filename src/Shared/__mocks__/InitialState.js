@@ -3,6 +3,10 @@ export default {
     matches: {},
     players: {},
     rounds: [],
+    customRound: {
+        available: [],
+        selected: []
+    },
     playersList: {
         sortBy: 'order',
         players: [],

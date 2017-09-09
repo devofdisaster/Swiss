@@ -37,7 +37,7 @@ export default class Tournament {
             return this.generateFirstRound()
         }
 
-        return this.generateNextRound(this._rounds.length)
+        return this.generateNextRound()
     }
 
     generateFirstRound() {
@@ -51,9 +51,20 @@ export default class Tournament {
         return firstRound
     }
 
-    generateNextRound(index) {
-        const sortedPlayers = this.sortPlayersByPower()
-        const round = new Round(index)
+    generateNextRound() {
+        return this.generateRoundWithMatches()
+    }
+
+    generateRoundWithMatches(matches = []) {
+        const round = new Round(this._rounds.length, matches.map((match) => {
+            const player1 = this._players.find((player) => player.getId() === match.player1)
+            const player2 = match.player2 ? this._players.find((player) => player.getId() === match.player2) : null
+
+            return new Match(match.id, player1, player2, match.round, match.result)
+        }))
+        const sortedPlayers = this.sortPlayersByPower().filter(
+            (player) => player.isEnabled() && !round.hasPlayerMatched(player)
+        )
 
         if (this.pairPlayersRecursively(sortedPlayers, round)) {
             this._rounds[round.getIndex()] = round
@@ -93,7 +104,7 @@ export default class Tournament {
                 const player2 = players[p2index]
 
                 if (round.hasPlayerMatched(player2)) {
-                    continue;
+                    continue
                 }
 
                 if (!player1.hasPlayedWith(player2)) {
@@ -118,6 +129,36 @@ export default class Tournament {
         }
 
         return false
+    }
+
+    determineAvailableMatches() {
+        const availableMatches = []
+        const sortedPlayers = this.sortPlayersByPower()
+            .filter((player) => player.isEnabled() && !player.hasPlayedInRound(this._rounds.length))
+
+        for (let p1index = 0; p1index < sortedPlayers.length; p1index++) {
+            const player1 = sortedPlayers[p1index]
+
+            for (let p2index = p1index + 1; p2index < sortedPlayers.length; p2index++) {
+                const player2 = sortedPlayers[p2index]
+
+                if (player2.hasPlayedWith(player1)) {
+                    continue
+                }
+
+                availableMatches.push(Match.withPlayers(player1, player2, this._rounds.length))
+            }
+        }
+
+        if (sortedPlayers.length % 2) {
+            for (let player of sortedPlayers) {
+                if (!player.hasPlayedWith(null)) {
+                    availableMatches.push(Match.bye(player, this._rounds.length))
+                }
+            }
+        }
+
+        return availableMatches
     }
 
     getPlayersInRandomOrder() {
@@ -215,5 +256,43 @@ export default class Tournament {
         this._players.forEach((player) => scores[player.getId()] = player.getPlainStats())
 
         return scores
+    }
+
+    getNewRoundState() {
+        const matches = {}
+        const players = {}
+
+        this._matches.forEach((match) => {
+            matches[match.getId()] = {
+                id: match.getId(),
+                player1: match.getPlayerOneId(),
+                player2: match.getPlayerTwoId(),
+                round: match.getRoundIndex(),
+                result: match.getResultKey()
+            }
+        })
+
+        this._players.forEach((player) => {
+            players[player.getId()] = {
+                id: player.getId(),
+                firstname: player.getFirstname(),
+                lastname: player.getLastname(),
+                nickname: player.getNickname(),
+                enabled: player.isEnabled(),
+                order: player.getOriginalOrder(),
+                matches: player.getMatchIds(),
+                ...player.getPlainStats()
+            }
+        })
+
+        return {
+            matches,
+            players,
+            rounds: this._rounds.map((round) => ({
+                matches: round.getMatchIds(),
+                index: round.getIndex(),
+                finished: round.isFinished()
+            }))
+        }
     }
 }

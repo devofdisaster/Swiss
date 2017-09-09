@@ -1,5 +1,5 @@
 import { NavigationActions } from 'react-navigation'
-import MainScreen from '../Navigation/MainScreen'
+import MainScreen from './Components/MainScreen'
 
 const initialAction = NavigationActions.reset({
     index: 0,
@@ -41,6 +41,10 @@ const initialState = {
     matches: {},
     players: {},
     rounds: [],
+    customRound: {
+        available: [],
+        selected: []
+    },
     playersList: {
         sortBy: 'order',
         players: [],

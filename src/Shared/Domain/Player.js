@@ -66,7 +66,11 @@ export default class Player {
     }
 
     hasPlayedWith(otherPlayer) {
-        return this._matches.filter((match) => match.hasPlayer(otherPlayer)).length
+        return this._matches.some((match) => match.hasPlayer(otherPlayer))
+    }
+
+    hasPlayedInRound(index) {
+        return this._matches.some((match) => match.getRoundIndex() === index)
     }
 
     isEnabled() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { addNavigationHelpers } from 'react-navigation'
 import { connect } from 'react-redux'
-import MainScreen from '../Navigation/MainScreen'
+import MainScreen from './Components/MainScreen'
 
 class App extends React.Component {
     render() {
