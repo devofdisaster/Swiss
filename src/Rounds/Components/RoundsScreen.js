@@ -9,7 +9,7 @@ import GenerateNewRound from '../ActionCreators/GenerateNewRound'
 
 const screenStyle = { display: 'flex', justifyContent: 'flex-start', alignItems: 'stretch', flex: 1 }
 const tabNavigatorConfig = {
-    animationEnabled: true,
+    animationEnabled: false,
     backBehavior: 'none',
     lazy: true,
     tabBarOptions: {
@@ -18,7 +18,7 @@ const tabNavigatorConfig = {
         indicatorStyle: { backgroundColor: 'black' },
         scrollEnabled: true,
         style: { backgroundColor: 'lightblue', borderTopWidth: 1, borderTopColor: 'black' },
-        tabStyle: { width: 100 }
+        tabStyle: { width: 75 }
     },
     swipeEnabled: true,
     tabBarComponent: TabBarTop,
