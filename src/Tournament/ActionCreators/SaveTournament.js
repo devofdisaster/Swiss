@@ -23,9 +23,8 @@ export default (name) => (dispatch, getState) => {
             dispatch(HideSaveModal())
             ToastAndroid.show(`Saved as ${name}`, ToastAndroid.SHORT)
         })
-        .catch((e) => {
+        .catch(() => {
             Alert.alert('Error!', `Couldn't save data for tournament ${name}`)
-            console.error(e)
         })
 }
 

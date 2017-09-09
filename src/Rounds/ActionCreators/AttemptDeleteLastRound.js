@@ -10,7 +10,7 @@ export default () => (dispatch, getState) => {
 
     Alert.alert(
         'Are you sure?',
-        '',
+        'Do you want to delete the last round?',
         [
         { text: 'Cancel' },
             { text: 'OK', onPress: () => onConfirm(dispatch, state) }

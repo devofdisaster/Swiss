@@ -19,9 +19,8 @@ export default (name) => (dispatch) => {
             dispatch(NavigationActions.navigate({ routeName: 'players' }))
             ToastAndroid.show(`${name} loaded successfully!`, ToastAndroid.SHORT)
         })
-        .catch((e) => {
+        .catch(() => {
             Alert.alert('Error!', `Couldn't load data for tournament ${name}`)
-            console.error(e)
         })
 
 }

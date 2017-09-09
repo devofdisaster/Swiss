@@ -11,7 +11,6 @@ export default (state = InitialState.tournament, action) => {
         case Types.TOURNAMENT_SHOW_LOAD_MODAL:
             return {
                 ...state,
-                availableToLoad: [],
                 loadModal: true,
                 loading: true
             }
