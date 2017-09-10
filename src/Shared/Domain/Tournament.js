@@ -24,14 +24,6 @@ export default class Tournament {
         return this._matches
     }
 
-    getPlayers() {
-        return this._players
-    }
-
-    getRounds() {
-        return this._rounds
-    }
-
     startNewRound() {
         if (!this._rounds.length) {
             return this.generateFirstRound()
