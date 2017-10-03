@@ -6,7 +6,7 @@ export default class Statistic {
             case 'games':
                 return 'Games'
             case 'points':
-                return 'Points'
+                return 'pts.'
             case 'results':
                 return 'W-D-L'
             case 'sos':

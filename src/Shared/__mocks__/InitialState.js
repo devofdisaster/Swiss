@@ -13,6 +13,10 @@ export default {
         order: 'asc',
         visibleStat: 'points'
     },
+    standings: {
+        players: [],
+        visibleStat: 'points'
+    },
     tournament: {
         name: `Test Tournament`,
         availableToLoad: [],

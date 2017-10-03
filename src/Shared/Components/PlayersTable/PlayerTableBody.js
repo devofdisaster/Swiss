@@ -1,6 +1,6 @@
 import React from 'react'
 import { ListView } from 'react-native'
-import PlayerTableRow from './PlayerTableRow'
+import PlayerTableRow from '../../../Players/Components/PlayerTableRow'
 
 function rowHasChanged(prev, next) {
     return Object.getOwnPropertyNames(prev).reduce(

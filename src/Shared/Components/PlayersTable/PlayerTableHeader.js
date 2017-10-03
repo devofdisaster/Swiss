@@ -1,7 +1,7 @@
 import React from 'react'
 import {View} from 'react-native'
-import Statistic from '../../Shared/Domain/Statistic'
-import PlayerTableHeaderCell from './PlayerTableHeaderCell'
+import Statistic from '../../../../__tests__/Shared/Domain/Statistic'
+import PlayerTableHeaderCell from '../../../Players/Components/PlayerTableHeaderCell'
 
 const viewStyle = { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }
 const numberStyle = { width: '10%' }

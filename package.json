@@ -1,6 +1,7 @@
 {
 	"name": "Swiss",
-	"version": "0.0.2",
+	"version": "1.0.0",
+	"description": "A swiss-system tournament app for card and miniatures games",
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",

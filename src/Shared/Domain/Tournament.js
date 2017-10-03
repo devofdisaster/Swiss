@@ -169,21 +169,7 @@ export default class Tournament {
     }
 
     sortPlayersByPower() {
-        return this._players.slice().sort((player1, player2) => {
-            if (player1.hasEqualStat('points', player2)) {
-                if (player1.hasEqualStat('sos', player2)) {
-                    if (player1.hasEqualStat('ssos', player2)) {
-                        return Math.floor((Math.random() * 100)) < 50 ? -1 : 1
-                    }
-
-                    return player2.hasLowerStat('ssos', player1) ? -1 : 1
-                }
-
-                return player2.hasLowerStat('sos', player1) ? -1 : 1
-            }
-
-            return player2.hasLowerStat('points', player1) ? -1 : 1
-        })
+        return this._players.slice().sort((player1, player2) => player2.hasLowerStanding(player1) ? -1 : 1)
     }
 
     generateFirstRoundMatches(players = []) {

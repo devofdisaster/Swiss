@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ScreenHeader from '../../Shared/Components/ScreenHeader'
-import PlayerStatPicker from './PlayerStatPicker'
+import PlayerStatPicker from '../../Shared/Components/PlayerStatPicker'
 import ChangeDisplayedStat from '../ActionCreators/ChangeDisplayedStat'
 import EditNewPlayer from '../ActionCreators/EditNewPlayer'
 import OpenDrawer from '../../Shared/ActionCreators/OpenDrawer'

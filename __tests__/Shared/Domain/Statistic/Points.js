@@ -5,7 +5,7 @@ describe('Points', () => {
 
     describe('renderName()', () => {
         it('should render points name', () => {
-            expect(points.renderName()).toEqual(`Points`)
+            expect(points.renderName()).toEqual(`pts.`)
         })
     })
 

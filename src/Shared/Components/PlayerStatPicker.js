@@ -1,11 +1,11 @@
 import React from 'react'
 import { Picker } from 'react-native'
-import Games from '../../Shared/Domain/Statistic/Games'
-import Points from '../../Shared/Domain/Statistic/Points'
-import Results from '../../Shared/Domain/Statistic/Results'
-import SoS from '../../Shared/Domain/Statistic/SoS'
-import SSoS from '../../Shared/Domain/Statistic/SSoS'
-import Comparison from '../../Shared/Domain/Statistic/Comparison'
+import Games from '../Domain/Statistic/Games'
+import Points from '../Domain/Statistic/Points'
+import Results from '../Domain/Statistic/Results'
+import SoS from '../Domain/Statistic/SoS'
+import SSoS from '../Domain/Statistic/SSoS'
+import Comparison from '../Domain/Statistic/Comparison'
 
 export default function PlayerStatPicker(props) {
     return (

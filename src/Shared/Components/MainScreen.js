@@ -4,12 +4,14 @@ import { BackHandler } from 'react-native'
 import TournamentTab from '../../Tournament/TournamentTab'
 import PlayersTab from '../../Players/PlayersTab'
 import RoundsTab from '../../Rounds/RoundsTab'
+import StandingsTab from '../../Standings/StandingsTab'
 import RecalculateScores from '../../Players/ActionCreators/RecalculateScores'
 
 const routes = {
-    tournament: { screen: TournamentTab,    name: 'tournament' },
-    players:    { screen: PlayersTab,       name: 'players'   },
-    rounds:     { screen: RoundsTab,        name: 'rounds'    },
+    tournament: { screen: TournamentTab, name: 'tournament' },
+    players:    { screen: PlayersTab,    name: 'players'   },
+    rounds:     { screen: RoundsTab,     name: 'rounds'    },
+    standings:  { screen: StandingsTab,  name: 'standings' }
 }
 
 const config = {
@@ -21,7 +23,7 @@ const config = {
                 onItemPress: ({ route }) => {
                     const { dispatch } = props.navigation
 
-                    if (0 === ['players', 'settings'].indexOf(route.routeName)) {
+                    if (0 === ['players', 'standings'].indexOf(route.routeName)) {
                         dispatch(RecalculateScores())
                     }
 
