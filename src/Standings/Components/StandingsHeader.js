@@ -6,7 +6,7 @@ import ChangeDisplayedStandingsStat from '../ActionCreators/ChangeDisplayedStand
 import OpenDrawer from '../../Shared/ActionCreators/OpenDrawer'
 
 const mapStateToProps = (state) => ({
-    selected: state.playersList.visibleStat
+    selected: state.standings.visibleStat
 })
 
 const mapDispatchToProps = (dispatch) => ({

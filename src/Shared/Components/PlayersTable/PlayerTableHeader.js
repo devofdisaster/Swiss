@@ -3,7 +3,14 @@ import {View} from 'react-native'
 import Statistic from '../../Domain/Statistic'
 import PlayerTableHeaderCell from '../../../Players/Components/PlayerTableHeaderCell'
 
-const viewStyle = { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }
+const viewStyle = {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    borderColor: 'grey',
+    borderBottomWidth: 0
+}
 const numberStyle = { width: '10%' }
 const nameStyle = { width: '65%' }
 const statStyle = { width: '25%' }

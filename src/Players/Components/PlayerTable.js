@@ -18,17 +18,6 @@ const tableStyle = {
     justifyContent: 'flex-start',
     flex: -1
 }
-const headerStyle = {
-    borderWidth: 1,
-    borderColor: 'grey',
-    borderBottomWidth: 0
-}
-const bodyStyle = {
-    borderWidth: 1,
-    borderColor: 'grey',
-    borderTopWidth: 0,
-    flexShrink: 1
-}
 
 function mapPlayersToList(state) {
     return state.playersList.players.map((id) => {
@@ -75,7 +64,6 @@ function PlayerTable(props) {
     return (
         <View style={tableStyle}>
             <PlayerTableHeader
-                style={headerStyle}
                 visibleStat={props.visibleStat}
                 onNameClick={props.onNameClick}
                 onNumberClick={props.onNumberClick}
@@ -83,7 +71,6 @@ function PlayerTable(props) {
             />
             <PlayerTableBody
                 players={props.players}
-                style={bodyStyle}
                 onPlayerClick={props.onPlayerClick}
                 onPlayerLongClick={props.onPlayerLongClick}
             />
