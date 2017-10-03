@@ -1,4 +1,4 @@
-import RecalculateScores from '../../../src/Players/ActionCreators/RecalculateScores'
+import RecalculateScores from '../../../src/Shared/ActionCreators/RecalculateScores'
 import { Types } from '../../../src/Shared/Actions'
 
 jest.mock('../../../src/Shared/Domain/Tournament')

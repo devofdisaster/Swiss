@@ -11,11 +11,8 @@ export default function (standingsState = InitialState.standings, playersState =
                 ...standingsState,
                 players: standingsState.players.filter((id) => id !== action.id)
             }
-        case Types.PLAYERS_LIST_REFRESH:
-            return {
-                ...standingsState,
-                players: sortPlayers(playersData, standingsState.visibleStat),
-            }
+        case Types.STANDINGS_REFRESH:
+            return {...standingsState, players: sortPlayers(playersData) }
         case Types.STANDINGS_CHANGE_STAT:
             return {...standingsState, visibleStat: action.stat }
         case Types.TOURNAMENT_START_NEW:
