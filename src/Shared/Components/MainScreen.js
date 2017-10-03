@@ -5,7 +5,7 @@ import TournamentTab from '../../Tournament/TournamentTab'
 import PlayersTab from '../../Players/PlayersTab'
 import RoundsTab from '../../Rounds/RoundsTab'
 import StandingsTab from '../../Standings/StandingsTab'
-import RecalculateScores from '../../Players/ActionCreators/RecalculateScores'
+import RecalculateScores from '../ActionCreators/RecalculateScores'
 
 const routes = {
     tournament: { screen: TournamentTab, name: 'tournament' },
@@ -23,7 +23,7 @@ const config = {
                 onItemPress: ({ route }) => {
                     const { dispatch } = props.navigation
 
-                    if (0 === ['players', 'standings'].indexOf(route.routeName)) {
+                    if (['players', 'standings'].indexOf(route.routeName) >= 0) {
                         dispatch(RecalculateScores())
                     }
 
@@ -47,6 +47,12 @@ export default class MainScreen extends DrawerNavigator(routes, config) {
         return navState.index === 0 && activeTabIndex > 1 && !navState.routes[0].routes[activeTabIndex].index
     }
 
+    shouldBackToRounds(navState) {
+        const activeTabIndex = navState.routes[0].index
+
+        return navState.index === 0 && activeTabIndex > 2 && !navState.routes[0].routes[activeTabIndex].index
+    }
+
     componentDidMount() {
         this.handler = BackHandler.addEventListener('backPress', () => {
             const { dispatch, state } = this.props.navigation
@@ -55,7 +61,9 @@ export default class MainScreen extends DrawerNavigator(routes, config) {
                 return false
             }
 
-            if (this.shouldBackToPlayers(state)) {
+            if (this.shouldBackToRounds(state)) {
+                dispatch(NavigationActions.navigate({ routeName: 'rounds' }))
+            } else if (this.shouldBackToPlayers(state)) {
                 dispatch(RecalculateScores())
                 dispatch(NavigationActions.navigate({ routeName: 'players' }))
             } else {
