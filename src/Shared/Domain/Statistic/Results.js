@@ -1,10 +1,10 @@
 import Statistic from '../Statistic'
 
 export default class Results extends Statistic {
-    static PLAYER_1_WIN = '5-0'
-    static PLAYER_2_WIN = '0-5'
-    static DRAW         = '2-2'
-    static BYE          = '5-0'
+    static PLAYER_1_WIN = '1-0'
+    static PLAYER_2_WIN = '0-1'
+    static DRAW         = '0-0'
+    static BYE          = '1-0'
 
     static renderName() {
         return super.renderName('results')

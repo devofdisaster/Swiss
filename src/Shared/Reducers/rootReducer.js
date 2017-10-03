@@ -6,6 +6,7 @@ import MatchesReducer from '../../Rounds/Reducers/MatchesReducer'
 import RoundsReducer from '../../Rounds/Reducers/RoundsReducer'
 import TournamentReducer from '../../Tournament/Reducers/TournamentReducer'
 import CustomRoundReducer from '../../Rounds/Reducers/CustomRoundReducer'
+import StandingsReducer from '../../Standings/Reducers/StandingsReducer'
 
 export default rootReducer = (state = InitialState, action) => ({
     matches: MatchesReducer(state.matches, action),
@@ -14,5 +15,6 @@ export default rootReducer = (state = InitialState, action) => ({
     playersList: PlayersListReducer(state.playersList, state.players, action),
     rounds: RoundsReducer(state.rounds, action),
     customRound: CustomRoundReducer(state.customRound, action),
+    standings: StandingsReducer(state.standings, state.players, action),
     tournament: TournamentReducer(state.tournament, action)
 })

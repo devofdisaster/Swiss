@@ -61,6 +61,22 @@ export default class Player {
         return this._stats[stat].isLowerThan(otherPlayer.getStatistic(stat))
     }
 
+    hasLowerStanding(otherPlayer) {
+        if (this.hasEqualStat('points', otherPlayer)) {
+            if (this.hasEqualStat('sos', otherPlayer)) {
+                if (this.hasEqualStat('ssos', otherPlayer)) {
+                    return Math.floor((Math.random() * 100)) < 50
+                }
+
+                return this.hasLowerStat('ssos', otherPlayer)
+            }
+
+            return this.hasLowerStat('sos', otherPlayer)
+        }
+
+        return this.hasLowerStat('points', otherPlayer)
+    }
+
     hasEqualStat(stat, otherPlayer) {
         return this._stats[stat].isEqualTo(otherPlayer.getStatistic(stat))
     }

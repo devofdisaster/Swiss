@@ -1,16 +1,13 @@
 import React from 'react'
 import { View, Alert } from 'react-native'
 import { connect } from 'react-redux'
+import Player from '../../Shared/Domain/Player'
+import EditExistingPlayer from '../../Players/ActionCreators/EditExistingPlayer'
+import ShowPlayerDetails from '../../Players/ActionCreators/ShowPlayerDetails'
+import AttemptDisablePlayer from '../../Players/ActionCreators/AttemptDisablePlayer'
+import EnablePlayer from '../../Players/ActionCreators/EnablePlayer'
 import PlayerTableHeader from '../../Shared/Components/PlayersTable/PlayerTableHeader'
 import PlayerTableBody from '../../Shared/Components/PlayersTable/PlayerTableBody'
-import Player from '../../Shared/Domain/Player'
-import SortByPlayerName from '../ActionCreators/SortByPlayerName'
-import SortByPlayerOrder from '../ActionCreators/SortByPlayerOrder'
-import SortByStatistic from '../ActionCreators/SortByStatistic'
-import EnablePlayer from '../ActionCreators/EnablePlayer'
-import EditExistingPlayer from '../ActionCreators/EditExistingPlayer'
-import ShowPlayerDetails from '../ActionCreators/ShowPlayerDetails'
-import AttemptDisablePlayer from '../ActionCreators/AttemptDisablePlayer'
 
 const tableStyle = {
     padding: 10,
@@ -31,15 +28,15 @@ const bodyStyle = {
 }
 
 function mapPlayersToList(state) {
-    return state.playersList.players.map((id) => {
+    return state.standings.players.map((id, index) => {
         const player = new Player(state.players[id])
 
         return {
             id: player.getId(),
             enabled: player.isEnabled(),
             name: player.renderName(),
-            order: player.getOriginalOrder() + 1,
-            stat: player.renderStatistic(state.playersList.visibleStat)
+            order: index + 1,
+            stat: player.renderStatistic(state.standings.visibleStat)
         }
     })
 }
@@ -64,9 +61,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    onNameClick: () => dispatch(SortByPlayerName()),
-    onNumberClick: () => dispatch(SortByPlayerOrder()),
-    onStatClick: () => dispatch(SortByStatistic()),
     onPlayerClick: (player) => dispatch(ShowPlayerDetails(player.id)),
     onPlayerLongClick: (player) => showPlayerOptions(dispatch, player)
 })
@@ -77,9 +71,9 @@ function PlayerTable(props) {
             <PlayerTableHeader
                 style={headerStyle}
                 visibleStat={props.visibleStat}
-                onNameClick={props.onNameClick}
-                onNumberClick={props.onNumberClick}
-                onStatClick={props.onStatClick}
+                onNameClick={() => {}}
+                onNumberClick={() => {}}
+                onStatClick={() => {}}
             />
             <PlayerTableBody
                 players={props.players}
@@ -92,3 +86,4 @@ function PlayerTable(props) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerTable)
+

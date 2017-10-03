@@ -1,5 +1,6 @@
 import React from 'react'
 import {Picker, View} from 'react-native'
+import Results from '../../Shared/Domain/Statistic/Results'
 
 const pickerStyle = {
     width: '20%',
@@ -16,9 +17,8 @@ export default function MatchResultPicker(props) {
                 enabled={props.enabled}
             >
                 <Picker.Item value={null} label="_-_"/>
-                <Picker.Item value="5-0" label="5-0"/>
-                <Picker.Item value="0-5" label="0-5"/>
-                <Picker.Item value="2-2" label="2-2"/>
+                <Picker.Item value={Results.PLAYER_1_WIN} label={Results.PLAYER_1_WIN}/>
+                <Picker.Item value={Results.PLAYER_2_WIN} label={Results.PLAYER_2_WIN}/>
             </Picker>
         </View>
     )

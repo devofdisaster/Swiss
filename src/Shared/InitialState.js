@@ -51,6 +51,10 @@ const initialState = {
         order: 'asc',
         visibleStat: 'points'
     },
+    standings: {
+        players: [],
+        visibleStat: 'points'
+    },
     tournament: {
         name: `Tournament ${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`,
         availableToLoad: [],
