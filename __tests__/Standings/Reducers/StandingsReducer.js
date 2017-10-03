@@ -1,9 +1,9 @@
 import StandingsReducer   from '../../../src/Standings/Reducers/StandingsReducer'
-import RefreshPlayerList    from '../../../src/Players/ActionCreators/RefreshPlayerList'
 import ChangeDisplayedStandingsStat  from '../../../src/Standings/ActionCreators/ChangeDisplayedStandingsStat'
 import DeletePlayer from '../../../src/Players/ActionCreators/DeletePlayer'
 import {Types} from '../../../src/Shared/Actions'
 import LoadTournamentData from '../../../src/Tournament/ActionCreators/LoadTournamentData'
+import RefreshStandings from '../../../src/Standings/ActionCreators/RefreshStandings'
 
 jest.mock('../../../src/Shared/InitialState');
 
@@ -17,7 +17,7 @@ describe('StandingsReducer', () => {
             ['player-five-hundred']: { id: 'player-five-hundred', nickname: 'xXxLegolas9273xXx', score: 9001 }
         }
 
-        expect(StandingsReducer(standingsState, playersState, RefreshPlayerList())).toEqual(expectedState)
+        expect(StandingsReducer(standingsState, playersState, RefreshStandings())).toEqual(expectedState)
     })
 
     it('should change visible statistic', () => {
