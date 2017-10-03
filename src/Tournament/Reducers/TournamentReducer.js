@@ -43,6 +43,11 @@ export default (state = InitialState.tournament, action) => {
                 ...state,
                 name: action.data.tournament.name
             }
+        case Types.TOURNAMENT_UPDATE_NAME:
+            return {
+                ...state,
+                name: action.name
+            }
         default:
             return state
     }

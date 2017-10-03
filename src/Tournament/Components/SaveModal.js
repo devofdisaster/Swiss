@@ -22,7 +22,7 @@ const style = StyleSheet.create({
 
 export default function SaveModal(props) {
     let tournamentName = props.tournamentName
-
+console.log(tournamentName)
     return (
         <Modal
             animationType="slide"

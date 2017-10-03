@@ -5,6 +5,7 @@ import HideLoadModal from '../../../src/Tournament/ActionCreators/HideLoadModal'
 import HideSaveModal from '../../../src/Tournament/ActionCreators/HideSaveModal'
 import HideTournamentModals from '../../../src/Tournament/ActionCreators/HideTournamentModals'
 import LoadTournamentData from '../../../src/Tournament/ActionCreators/LoadTournamentData'
+import UpdateTournamentName from '../../../src/Tournament/ActionCreators/UpdateTournamentName'
 
 jest.mock('../../../src/Shared/InitialState');
 
@@ -87,10 +88,22 @@ describe('TournamentReducer', () => {
         )
     })
 
-    it('hides loads tournament name Tournament/LoadData', () => {
+    it('loads tournament name on Tournament/LoadData', () => {
         expect(TournamentReducer({...state}, LoadTournamentData({ tournament: { name: 'Loaded!' } }))).toEqual(
             {
                 name: 'Loaded!',
+                availableToLoad: [],
+                loading: false,
+                saveModal: false,
+                loadModal: false
+            }
+        )
+    })
+
+    it('updates tournament name on Tournament/UpdateName', () => {
+        expect(TournamentReducer({...state}, UpdateTournamentName('Wimbledon'))).toEqual(
+            {
+                name: 'Wimbledon',
                 availableToLoad: [],
                 loading: false,
                 saveModal: false,
