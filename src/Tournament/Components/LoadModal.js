@@ -9,6 +9,7 @@ const style = StyleSheet.create({
     row: { flex: -1, flexDirection: 'row', justifyContent: 'center', alignItems: 'stretch' },
     title: { fontSize: 20, color: '#000' },
     subTitle: { fontSize: 16, marginBottom: 30 },
+    image: { height: 36, resizeMode: 'contain', alignSelf: 'center' },
     text: {
         fontSize: 18,
         color: 'grey',
@@ -52,7 +53,7 @@ export default function LoadModal(props) {
                             }
                             ListEmptyComponent={
                                 <View style={style.header}>
-                                    <Image style={{ alignSelf: 'center' }} source={emptyImage}/>
+                                    <Image style={style.image} source={emptyImage}/>
                                     <Text style={style.title}>No saved data found!</Text>
                                 </View>
                             }

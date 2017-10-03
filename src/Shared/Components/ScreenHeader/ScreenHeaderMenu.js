@@ -23,6 +23,7 @@ const itemTitleStyle = {
     fontSize: 16
 }
 
+const imageStyle = { height: 36, resizeMode: 'contain', width: 36, marginLeft: 5, marginRight: 5 }
 const background = TouchableNativeFeedback.SelectableBackgroundBorderless();
 const canUseForeground = TouchableNativeFeedback.canUseNativeForeground()
 
@@ -37,7 +38,7 @@ export default function ScreenHeaderMenu(props) {
 }
 
 function renderItem(item) {
-    const itemStyle = Object.assign({ width: 36, height: 36, marginLeft: 5, marginRight: 5 }, item.style || {})
+    const itemStyle = Object.assign(imageStyle, item.style || {})
 
     return (
         <TouchableNativeFeedback

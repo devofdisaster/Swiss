@@ -3,9 +3,10 @@ import { View, TouchableNativeFeedback, Image } from 'react-native'
 
 const background = TouchableNativeFeedback.SelectableBackgroundBorderless()
 const canUseForeground = TouchableNativeFeedback.canUseNativeForeground()
+const imageStyle = { height: 36, resizeMode: 'contain', width: 36, marginLeft: 5, marginRight: 5 }
 
 export default function ScreenHeaderNavIcon(props) {
-    const style = Object.assign({ width: 36, height: 36, marginLeft: 5, marginRight: 5 }, props.style || {})
+    const style = Object.assign(imageStyle, props.style || {})
 
     return (
         <TouchableNativeFeedback

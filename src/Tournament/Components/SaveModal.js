@@ -16,6 +16,7 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 30
     },
+    image: { height: 36, resizeMode: 'contain' },
     buttonText: { fontSize: 20, marginLeft: 20, color: '#000' },
     input: { fontSize: 16, minWidth: '60%' }
 })
@@ -47,7 +48,7 @@ console.log(tournamentName)
                             onPress={() => props.onSaveModalSubmit(tournamentName)}
                         >
                             <View style={style.button}>
-                                <Image source={saveIcon}/>
+                                <Image source={saveIcon} style={style.image} />
                                 <Text style={style.buttonText}>Save</Text>
                             </View>
                         </TouchableNativeFeedback>
