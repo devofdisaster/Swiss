@@ -1,6 +1,6 @@
 import React from 'react'
 import {View} from 'react-native'
-import Statistic from '../../../../__tests__/Shared/Domain/Statistic'
+import Statistic from '../../Domain/Statistic'
 import PlayerTableHeaderCell from '../../../Players/Components/PlayerTableHeaderCell'
 
 const viewStyle = { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }
