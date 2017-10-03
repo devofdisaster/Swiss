@@ -10,9 +10,14 @@ import SaveTournament from '../ActionCreators/SaveTournament'
 import LoadTournament from '../ActionCreators/LoadTournament'
 import ShowLoadModalAndLoadData from '../ActionCreators/ShowLoadModalAndLoadData'
 import AttemptDeleteSavedItem from '../ActionCreators/AttemptDeleteSavedItem'
+import ScreenHeader from '../../Shared/Components/ScreenHeader'
+import OpenDrawer from '../../Shared/ActionCreators/OpenDrawer'
 
 const styles = StyleSheet.create({
-    body: {
+    view: {
+        flex: 1
+    },
+    menu: {
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1
@@ -23,10 +28,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: 30
     },
+    image: {
+        height: 36,
+        resizeMode: 'contain'
+    },
     text: {
         color: '#000',
         fontSize: 20,
-        marginLeft: 20
+        marginLeft: 10
     }
 })
 const startIcon = require('material-design-icons/content/drawable-hdpi/ic_add_circle_outline_black_36dp.png')
@@ -40,52 +49,58 @@ class TournamentMenuScreen extends React.Component {
 
     render() {
         return (
-            <View style={styles.body}>
-                <TouchableNativeFeedback
-                    background={background}
-                    useForeground={useForeground}
-                    onPress={this.props.onStartPress}
-                >
-                    <View style={styles.button}>
-                        <Image source={startIcon}/>
-                        <Text style={styles.text}>Start new tournament</Text>
-                    </View>
-                </TouchableNativeFeedback>
-                <TouchableNativeFeedback
-                    background={background}
-                    useForeground={useForeground}
-                    onPress={this.props.onSavePress}
-                >
-                    <View style={styles.button}>
-                        <Image source={saveIcon}/>
-                        <Text style={styles.text}>Save tournament</Text>
-                    </View>
-                </TouchableNativeFeedback>
-                <TouchableNativeFeedback
-                    background={background}
-                    useForeground={useForeground}
-                    onPress={this.props.onLoadPress}
-                >
-                    <View style={styles.button}>
-                        <Image source={loadIcon}/>
-                        <Text style={styles.text}>Load tournament</Text>
-                    </View>
-                </TouchableNativeFeedback>
-                <SaveModal
-                    tournamentName={this.props.tournamentName}
-                    loading={this.props.isLoading}
-                    visible={this.props.saveModalVisible}
-                    onBackPress={this.props.onBackPress}
-                    onSaveModalSubmit={this.props.onSaveModalSubmit}
+            <View style={styles.view}>
+                <ScreenHeader
+                    navIcon={{ onPress: this.props.onNavIconPressed }}
+                    title="Tournament"
                 />
-                <LoadModal
-                    items={this.props.availableToLoad}
-                    loading={this.props.isLoading}
-                    visible={this.props.loadModalVisible}
-                    onBackPress={this.props.onBackPress}
-                    onLoadModalSubmit={this.props.onLoadModalSubmit}
-                    onItemLongPress={this.props.onItemLongPress}
-                />
+                <View style={styles.menu}>
+                    <TouchableNativeFeedback
+                        background={background}
+                        useForeground={useForeground}
+                        onPress={this.props.onStartPress}
+                    >
+                        <View style={styles.button}>
+                            <Image source={startIcon} style={styles.image} />
+                            <Text style={styles.text}>Start new tournament</Text>
+                        </View>
+                    </TouchableNativeFeedback>
+                    <TouchableNativeFeedback
+                        background={background}
+                        useForeground={useForeground}
+                        onPress={this.props.onSavePress}
+                    >
+                        <View style={styles.button}>
+                            <Image source={saveIcon} style={styles.image} />
+                            <Text style={styles.text}>Save tournament</Text>
+                        </View>
+                    </TouchableNativeFeedback>
+                    <TouchableNativeFeedback
+                        background={background}
+                        useForeground={useForeground}
+                        onPress={this.props.onLoadPress}
+                    >
+                        <View style={styles.button}>
+                            <Image source={loadIcon} style={styles.image} />
+                            <Text style={styles.text}>Load tournament</Text>
+                        </View>
+                    </TouchableNativeFeedback>
+                    <SaveModal
+                        tournamentName={this.props.tournamentName}
+                        loading={this.props.isLoading}
+                        visible={this.props.saveModalVisible}
+                        onBackPress={this.props.onBackPress}
+                        onSaveModalSubmit={this.props.onSaveModalSubmit}
+                    />
+                    <LoadModal
+                        items={this.props.availableToLoad}
+                        loading={this.props.isLoading}
+                        visible={this.props.loadModalVisible}
+                        onBackPress={this.props.onBackPress}
+                        onLoadModalSubmit={this.props.onLoadModalSubmit}
+                        onItemLongPress={this.props.onItemLongPress}
+                    />
+                </View>
             </View>
         )
     }
@@ -106,7 +121,8 @@ const mapDispatchToProps = (dispatch) => ({
     onBackPress:        () => dispatch(HideTournamentModals()),
     onSaveModalSubmit:  (name) => dispatch(SaveTournament(name)),
     onLoadModalSubmit:  (name) => dispatch(LoadTournament(name)),
-    onItemLongPress:    (name) => dispatch(AttemptDeleteSavedItem(name))
+    onItemLongPress:    (name) => dispatch(AttemptDeleteSavedItem(name)),
+    onNavIconPressed:   () => dispatch(OpenDrawer())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TournamentMenuScreen)
