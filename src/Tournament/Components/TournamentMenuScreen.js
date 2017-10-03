@@ -9,7 +9,6 @@ import LoadModal from './LoadModal'
 import SaveTournament from '../ActionCreators/SaveTournament'
 import LoadTournament from '../ActionCreators/LoadTournament'
 import ShowLoadModalAndLoadData from '../ActionCreators/ShowLoadModalAndLoadData'
-import RemoveSavedItem from '../ActionCreators/DeleteSavedItem'
 import AttemptDeleteSavedItem from '../ActionCreators/AttemptDeleteSavedItem'
 
 const styles = StyleSheet.create({
