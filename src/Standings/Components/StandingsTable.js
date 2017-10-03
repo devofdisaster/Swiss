@@ -15,17 +15,6 @@ const tableStyle = {
     justifyContent: 'flex-start',
     flex: -1
 }
-const headerStyle = {
-    borderWidth: 1,
-    borderColor: 'grey',
-    borderBottomWidth: 0
-}
-const bodyStyle = {
-    borderWidth: 1,
-    borderColor: 'grey',
-    borderTopWidth: 0,
-    flexShrink: 1
-}
 
 function mapPlayersToList(state) {
     return state.standings.players.map((id, index) => {
@@ -57,7 +46,7 @@ function showPlayerOptions(dispatch, player) {
 
 const mapStateToProps = (state) => ({
     players: mapPlayersToList(state),
-    visibleStat: state.playersList.visibleStat
+    visibleStat: state.standings.visibleStat
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -65,11 +54,10 @@ const mapDispatchToProps = (dispatch) => ({
     onPlayerLongClick: (player) => showPlayerOptions(dispatch, player)
 })
 
-function PlayerTable(props) {
+function StandingsTable(props) {
     return (
         <View style={tableStyle}>
             <PlayerTableHeader
-                style={headerStyle}
                 visibleStat={props.visibleStat}
                 onNameClick={() => {}}
                 onNumberClick={() => {}}
@@ -77,7 +65,6 @@ function PlayerTable(props) {
             />
             <PlayerTableBody
                 players={props.players}
-                style={bodyStyle}
                 onPlayerClick={props.onPlayerClick}
                 onPlayerLongClick={props.onPlayerLongClick}
             />
@@ -85,5 +72,5 @@ function PlayerTable(props) {
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerTable)
+export default connect(mapStateToProps, mapDispatchToProps)(StandingsTable)
 

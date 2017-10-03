@@ -2,6 +2,13 @@ import React from 'react'
 import { ListView } from 'react-native'
 import PlayerTableRow from '../../../Players/Components/PlayerTableRow'
 
+const bodyStyle = {
+    borderWidth: 1,
+    borderColor: 'grey',
+    borderTopWidth: 0,
+    flexShrink: 1
+}
+
 function rowHasChanged(prev, next) {
     return Object.getOwnPropertyNames(prev).reduce(
         (carry, prop) => carry || prev[prop] !== next[prop],
@@ -28,7 +35,7 @@ export default class PlayerTableBody extends React.Component {
     render() {
         return (
             <ListView
-                style={this.props.style}
+                style={{...bodyStyle, ...this.props.style}}
                 dataSource={this.dataSource.cloneWithRows(this.props.players, null)}
                 initialListSize={16}
                 renderRow={this.renderRow}
